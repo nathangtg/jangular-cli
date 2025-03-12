@@ -1,7 +1,5 @@
 # Jangular
 
-![Jangular Logo](https://via.placeholder.com/150x150)
-
 ## Enterprise-Grade Java API & Angular Starter Kit
 
 Jangular is a comprehensive starter kit that combines the power of Spring Boot for backend development and Angular for frontend, with built-in authentication and authorization systems. This project aims to accelerate enterprise-level development by providing a robust foundation for creating secure, scalable applications.
