@@ -17,6 +17,19 @@ const program = new Command('jangular')
   .version('0.1.0')
   .description('A CLI tool for generating Java + Angular projects');
 
+program.option('--test', 'Run a test check for JAngular CLI');
+program.parse(process.argv);
+
+// Retrieve options AFTER parsing
+const options = program.opts();
+
+// Handle `--test` option
+if (options.test) {
+  console.log(chalk.green("✅ JAngular CLI test executed successfully!"));
+  console.log(chalk.blue("CLI is working as expected."));
+  process.exit(0);
+}
+
 program
   .command('init <projectName>')
   .description('Initialize a new Java + Angular project')

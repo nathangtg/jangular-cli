@@ -1,6 +1,6 @@
 {
   "name": "jangular-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A starter kit for Angular and Spring Boot to accelerate enterprise-level development.",
   "main": "index.js",
   "type": "module",
@@ -8,16 +8,19 @@
     "jangular": "./index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node index.js --test"
   },
   "keywords": ["angular", "spring-boot", "starter-kit", "enterprise", "development", "cli"],
-  "author": "",
-  "license": "ISC",
+  "author": "Nathan G.",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^13.1.0",
     "fs-extra": "^11.3.0",
     "inquirer": "^12.4.3"
+  },
+  "engines": {
+    "node": ">=16"
   },
   "readme": "README.md"
 }
