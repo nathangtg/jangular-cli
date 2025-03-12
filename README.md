@@ -1,5 +1,7 @@
 # Jangular
 
+![Jangular Logo](https://via.placeholder.com/150x150)
+
 ## Enterprise-Grade Java API & Angular Starter Kit
 
 Jangular is a comprehensive starter kit that combines the power of Spring Boot for backend development and Angular for frontend, with built-in authentication and authorization systems. This project aims to accelerate enterprise-level development by providing a robust foundation for creating secure, scalable applications.
@@ -140,6 +142,64 @@ jangular-project/
 └── README.md               # Project documentation
 ```
 
+## Contributing to Templates
+
+Jangular uses Git submodules for the frontend and backend templates:
+- Backend template: `github/nathangtg/jangular-backend`
+- Frontend template: `github/nathangtg/frontend`
+
+### How to Contribute
+
+1. **Clone the repository with submodules**:
+   ```bash
+   git clone --recurse-submodules https://github.com/yourusername/jangular-cli.git
+   cd jangular-cli
+   ```
+
+2. **Update submodules** (if you didn't clone with `--recurse-submodules`):
+   ```bash
+   git submodule update --init --recursive
+   ```
+
+3. **Making changes to templates**:
+
+   For backend template:
+   ```bash
+   # Navigate to backend template
+   cd templates/backend
+   
+   # Make your changes
+   
+   # Commit and push changes
+   git add .
+   git commit -m "Description of your changes"
+   git push origin master
+   ```
+
+   For frontend template:
+   ```bash
+   # Navigate to frontend template
+   cd templates/frontend
+   
+   # Make your changes
+   
+   # Commit and push changes
+   git add .
+   git commit -m "Description of your changes"
+   git push origin master
+   ```
+
+4. **Update the main repository to reference the new template version**:
+   ```bash
+   # Return to the main project directory
+   cd ..
+   
+   # Update the submodule reference
+   git add templates/backend  # or templates/frontend
+   git commit -m "Update template reference"
+   git push
+   ```
+
 ## API Endpoints
 
 ### Authentication Controller (`/api/auth`)
@@ -262,7 +322,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the ISC License - see the LICENSE file for details.
 
 ---
 
