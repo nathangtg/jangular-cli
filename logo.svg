@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- Background shield -->
+  <path d="M200 20 L320 60 L320 180 C320 220 280 260 200 280 C120 260 80 220 80 180 L80 60 Z" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Angular-inspired "A" -->
+  <path d="M200 40 L260 160 L240 160 L230 130 L170 130 L160 160 L140 160 Z M200 70 L180 110 L220 110 Z" fill="#DD0031"/>
+  
+  <!-- Java cup -->
+  <path d="M165 170 C145 160 145 140 165 130 L155 130 C135 140 135 160 155 170 Z" fill="#5382A1"/>
+  <path d="M235 170 C255 160 255 140 235 130 L245 130 C265 140 265 160 245 170 Z" fill="#5382A1"/>
+  <path d="M165 170 C180 180 220 180 235 170 L235 130 C220 140 180 140 165 130 Z" fill="#5382A1"/>
+  <path d="M200 120 C185 120 170 125 165 130 C180 140 220 140 235 130 C230 125 215 120 200 120 Z" fill="#E76F00"/>
+  
+  <!-- Database cylinders -->
+  <ellipse cx="200" cy="185" rx="40" ry="10" fill="#4479A1" stroke="#2F6491" stroke-width="1.5"/>
+  <path d="M160 185 L160 205 C160 210.5 178 216 200 216 C222 216 240 210.5 240 205 L240 185" fill="#4479A1" stroke="#2F6491" stroke-width="1.5"/>
+  <ellipse cx="200" cy="205" rx="40" ry="10" fill="#4479A1" stroke="#2F6491" stroke-width="1.5" opacity="0.8"/>
+  
+  <!-- "J" letter -->
+  <path d="M200 210 L200 235 C200 245 190 250 180 250 C170 250 160 245 160 235 L170 235 C170 240 175 242 180 242 C185 242 190 240 190 235 L190 210 Z" fill="#2F4858" stroke="#2F4858" stroke-width="1"/>
+  
+  <!-- Text -->
+  <text x="200" y="275" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#2F4858">JANGULAR</text>
+</svg>
