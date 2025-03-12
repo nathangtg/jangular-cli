@@ -1,6 +1,6 @@
 {
   "name": "jangular-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A starter kit for Angular and Spring Boot to accelerate enterprise-level development.",
   "main": "index.js",
   "type": "module",
@@ -18,5 +18,6 @@
     "commander": "^13.1.0",
     "fs-extra": "^11.3.0",
     "inquirer": "^12.4.3"
-  }
+  },
+  "readme": "README.md"
 }
