@@ -1,6 +1,7 @@
 # Jangular
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+
   <!-- Background shield -->
   <path d="M200 20 L320 60 L320 180 C320 220 280 260 200 280 C120 260 80 220 80 180 L80 60 Z" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
   
