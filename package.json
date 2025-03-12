@@ -1,7 +1,7 @@
 {
   "name": "jangular-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "A starter kit for Angular and Spring Boot to accelerate enterprise-level development.",
   "main": "index.js",
   "type": "module",
   "bin": {
@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["angular", "spring-boot", "starter-kit", "enterprise", "development", "cli"],
   "author": "",
   "license": "ISC",
   "dependencies": {
