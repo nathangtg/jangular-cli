@@ -12,7 +12,8 @@ Jangular is a comprehensive starter kit that combines the power of Spring Boot f
 
 - **Full-Stack Solution**: Seamlessly integrates Spring Boot backend with Angular frontend
 - **Authentication & Authorization**: Pre-configured security using Spring Security and JWT tokens
-- **Database Integration**: MySQL database support with JPA/Hibernate
+- **Database Flexibility**: Support for MySQL, PostgreSQL, and MSSQL databases
+- **Database Integration**: Database support with JPA/Hibernate
 - **Database Migration**: Automated database schema management with Flyway
 - **CLI Tool**: Simple command-line interface for project initialization
 - **Ready-to-Use Components**: Login, registration, and dashboard components
@@ -29,7 +30,7 @@ Jangular is a comprehensive starter kit that combines the power of Spring Boot f
 - Spring Data JPA
 - JWT Authentication
 - Flyway Migration
-- MySQL
+- MySQL, PostgreSQL, or MSSQL support
 - Lombok
 - Maven
 
@@ -56,7 +57,7 @@ Jangular is a comprehensive starter kit that combines the power of Spring Boot f
 - Java 21 or higher
 - Node.js 16 or higher
 - npm or yarn
-- MySQL 8.0 or higher
+- MySQL 8.0 or higher, PostgreSQL, or MSSQL
 - Maven 3.6 or higher
 
 ### Installation
@@ -78,6 +79,19 @@ npm run start:backend
 
 # In another terminal, start the frontend
 npm run start:frontend
+```
+
+#### Interactive CLI Setup
+
+When initializing a new project, the CLI will prompt you for configuration options:
+
+```
+Creating new JAngular project: my-project
+✔ Enter base package name: com.example.myproject
+✔ Select database type: [MySQL/PostgreSQL/MSSQL]
+✔ Enter database name: my_project_db
+✔ Enter database username: devuser
+✔ Enter database password: ********
 ```
 
 #### CLI Command Reference
@@ -142,6 +156,43 @@ jangular-project/
 │   └── angular.json        # Angular CLI configuration
 ├── package.json            # Root package.json with scripts
 └── README.md               # Project documentation
+```
+
+## Database Configuration
+
+Jangular supports multiple database systems:
+
+### MySQL Configuration
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/your_database_name
+    username: your_username
+    password: your_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+```
+
+### PostgreSQL Configuration
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/your_database_name
+    username: your_username
+    password: your_password
+    driver-class-name: org.postgresql.Driver
+```
+
+### MSSQL Configuration
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=your_database_name
+    username: your_username
+    password: your_password
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 ```
 
 ## Contributing to Templates
@@ -293,6 +344,7 @@ changePassword(id: number, oldPassword: string, newPassword: string): Observable
 - Customize UI components to match your brand identity
 - Add additional Angular modules and components
 - Extend authentication with social login providers
+- Configure different database providers based on your infrastructure requirements
 
 ## Development Workflow
 
