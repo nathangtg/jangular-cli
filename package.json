@@ -1,18 +1,19 @@
 {
   "name": "jangular-cli",
   "version": "1.2.0",
-  "description": "A powerful CLI Based starter kit for setting up Angular & Spring Boot projects with best practices.",
+  "description": "A powerful CLI tool for rapidly bootstrapping Angular 17 & Spring Boot (Java 21) applications with integrated security, services, and enterprise-ready best practices.",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "jangular": "./index.js",
-    "jangular.cmd": "./index.js"
+    "jangular": "./index.js"
   },
   "scripts": {
-    "test": "node index.js --test",
+    "test": "jest",
+    "lint": "eslint .",
     "check": "node lib/requirements.js",
-    "build": "echo 'Build script placeholder'",
-    "start": "node index.js"
+    "build": "npm run lint && npm run test",
+    "start": "node index.js",
+    "prepare": "husky install"
   },
   "keywords": [
     "angular",
@@ -24,18 +25,38 @@
     "automation",
     "java",
     "typescript",
-    "fullstack"
+    "fullstack",
+    "authentication",
+    "security",
+    "spring-security",
+    "angular-services",
+    "scaffolding"
   ],
-  "author": "Nathan G.",
+  "author": {
+    "name": "Nathan G.",
+    "url": "https://github.com/nathangtg"
+  },
   "license": "MIT",
   "dependencies": {
-    "chalk": "^4.1.2",
+    "chalk": "^5.3.0",
     "commander": "^13.1.0",
     "fs-extra": "^11.3.0",
-    "inquirer": "^12.4.3"
+    "inquirer": "^9.2.15",
+    "ora": "^8.0.1",
+    "semver": "^7.6.0",
+    "mustache": "^4.2.0",
+    "execa": "^8.0.1",
+    "listr2": "^8.0.2",
+    "conf": "^12.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.0"
   },
   "engines": {
-    "node": ">=16",
+    "node": ">=18",
     "java": ">=21"
   },
   "repository": {
@@ -46,5 +67,7 @@
     "url": "https://github.com/nathangtg/jangular-cli/issues"
   },
   "homepage": "https://github.com/nathangtg/jangular-cli#readme",
-  "readme": "README.md"
+  "lint-staged": {
+    "*.js": "eslint --fix"
+  }
 }
