@@ -8,7 +8,6 @@
     "jangular": "./index.js"
   },
   "scripts": {
-    "test": "jest",
     "check": "node lib/requirements.js",
     "build": "npm run test",
     "start": "node index.js",
