@@ -12,6 +12,7 @@ import { handleInitCommand } from './lib/commands.js';
 
 // Constants
 import { PROGRAM_VERSION, PROGRAM_DESCRIPTION } from './lib/constants.js';
+import { checkRequirements } from './lib/requirements.js';
 
 // Fix for __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -32,7 +33,11 @@ function initializeCLI() {
     .description('Initialize a new Java + Angular project')
     .option('-g, --group-id <groupId>', 'Java group ID', 'com.example')
     .option('-a, --artifact-id <artifactId>', 'Java artifact ID', 'backend')
-    .action((projectName, options) => handleInitCommand(projectName, options, __dirname));
+    .action((projectName, options) => 
+    {
+      checkRequirements();
+      handleInitCommand(projectName, options, __dirname)
+    });
 
   program.parse(process.argv);
 
