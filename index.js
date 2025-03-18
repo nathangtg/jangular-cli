@@ -1,11 +1,8 @@
 #!/usr/bin/env node
-
 import { Command } from 'commander';
-import fs from 'fs-extra';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import chalk from 'chalk';
-import inquirer from 'inquirer';
 
 // Command handlers
 import { handleInitCommand } from './lib/commands.js';
