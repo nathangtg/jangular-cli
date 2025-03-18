@@ -291,26 +291,29 @@ Jangular uses Git submodules for the frontend and backend templates:
 5. Protected routes check token validity using the auth guard
 6. Refresh token functionality automatically renews expired tokens
 
-### Angular Routes Configuration
+## Angular Routes Configuration
 
-```typescript
-export const routes: Routes = [
-  {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [authGuard]  // Protected route
-  },
-  {
-    path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
-  }
-];
-```
+The following table provides an overview of the application's route structure.
+
+### Main Application Routes
+
+| Path          | Component/Module | Guard(s)     | Description |
+|--------------|----------------|-------------|-------------|
+| `/auth`      | `AuthModule` (Lazy-loaded) | None | Loads authentication-related routes (Login/Register) |
+| `/dashboard` | `DashboardComponent` | `authGuard` | Protected dashboard for authenticated users |
+| `/admin/users` | `UserModule` (Lazy-loaded) | `AdminGuard` (Inside `UserModule`) | Admin panel for managing users |
+| `/`          | Redirects to `/dashboard` | None | Default redirection |
+
+### User Module Routes (`/admin/users`)
+
+| Path             | Component             | Guard(s)     | Description |
+|-----------------|----------------------|-------------|-------------|
+| `/admin/users`  | `UserListComponent`   | `AdminGuard` | Displays a list of users |
+| `/admin/users/:id` | `UserDetailComponent` | `AdminGuard` | Shows details of a specific user |
+| `/admin/users/:id/edit` | `UserDetailComponent` | `AdminGuard` | Edit user details |
+
+The **User Module** is lazily loaded to improve performance, ensuring admin-related routes are only loaded when required.
+
 
 ## Key Services
 
@@ -376,7 +379,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the ISC License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
