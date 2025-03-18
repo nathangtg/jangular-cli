@@ -11,8 +11,7 @@
     "check": "node lib/requirements.js",
     "build": "npm run test",
     "start": "node index.js",
-    "test": "node --check index.js",
-    "prepare": "husky install"
+    "test": "node --check index.js"
   },
   "keywords": [
     "angular",
