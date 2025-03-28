@@ -1,6 +1,6 @@
 {
   "name": "jangular-cli",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A powerful CLI tool for rapidly bootstrapping Angular 17 & Spring Boot (Java 21) applications with integrated security, services, and enterprise-ready best practices.",
   "main": "index.js",
   "type": "module",
