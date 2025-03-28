@@ -20,6 +20,8 @@ const __dirname = path.dirname(__filename);
 
 // Main CLI function
 async function initializeCLI() {
+  console.log(PROGRAM_DESCRIPTION);
+  console.log(`Version: ${PROGRAM_VERSION}`);
   // Set up the CLI program
   const program = new Command('jangular')
     .version(PROGRAM_VERSION)
