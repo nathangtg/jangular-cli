@@ -4,6 +4,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import chalk from 'chalk';
 
+// Version handlers
+import { UpdateNotifier } from './lib/update-notifier.js';
+
 // Command handlers
 import { handleInitCommand } from './lib/commands.js';
 
@@ -21,6 +24,10 @@ function initializeCLI() {
   const program = new Command('jangular')
     .version(PROGRAM_VERSION)
     .description(PROGRAM_DESCRIPTION);
+
+  // Check version command
+  notifier = new UpdateNotifier('jangular-cli', true);
+  notifier.checkForUpdate();
 
   program.option('--test', 'Run a test check for JAngular CLI');
 
