@@ -19,15 +19,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Main CLI function
-function initializeCLI() {
+async function initializeCLI() {
   // Set up the CLI program
   const program = new Command('jangular')
     .version(PROGRAM_VERSION)
     .description(PROGRAM_DESCRIPTION);
 
-  // Check version command
-  let notifier = new UpdateNotifier('jangular-cli', true);
-  notifier.checkForUpdate();
+  // Asynchronous version check - run in background
+  const notifier = new UpdateNotifier('jangular-cli', true);
+  notifier.checkForUpdate().catch(console.error);
 
   program.option('--test', 'Run a test check for JAngular CLI');
 
@@ -37,10 +37,15 @@ function initializeCLI() {
     .description('Initialize a new Java + Angular project')
     .option('-g, --group-id <groupId>', 'Java group ID', 'com.example')
     .option('-a, --artifact-id <artifactId>', 'Java artifact ID', 'backend')
-    .action((projectName, options) => 
-    {
-      checkRequirements();
-      handleInitCommand(projectName, options, __dirname)
+    .action(async (projectName, options) => {
+      try {
+        // Move requirements check to be more selective
+        checkRequirements();
+        await handleInitCommand(projectName, options, __dirname);
+      } catch (error) {
+        console.error(chalk.red('Error during project initialization:'), error);
+        process.exit(1);
+      }
     });
 
   program.parse(process.argv);
@@ -55,4 +60,7 @@ function initializeCLI() {
 }
 
 // Execute CLI
-initializeCLI();
+initializeCLI().catch(error => {
+  console.error(chalk.red('CLI initialization error:'), error);
+  process.exit(1);
+});
