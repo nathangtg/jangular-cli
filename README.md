@@ -69,7 +69,7 @@ Jangular is a comprehensive starter kit that combines the power of Spring Boot f
 npm install jangular-cli
 
 # Create a new Jangular project
-npx jangular-cli init my-project
+jangular init my-project
 
 # Navigate to your project
 cd my-project
@@ -98,13 +98,13 @@ Creating new JAngular project: my-project
 
 ```bash
 # View help information
-npx jangular-cli --help
+jangular --help
 
 # Initialize a new project
-npx jangular-cli init <projectName>
+jangular init <projectName>
 
 # Display version
-npx jangular-cli --version
+jangular --version
 ```
 
 #### Manual Installation
