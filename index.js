@@ -26,7 +26,7 @@ function initializeCLI() {
     .description(PROGRAM_DESCRIPTION);
 
   // Check version command
-  notifier = new UpdateNotifier('jangular-cli', true);
+  let notifier = new UpdateNotifier('jangular-cli', true);
   notifier.checkForUpdate();
 
   program.option('--test', 'Run a test check for JAngular CLI');
