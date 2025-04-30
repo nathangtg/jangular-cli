@@ -45,7 +45,8 @@
     "listr2": "^8.0.2",
     "mustache": "^4.2.0",
     "ora": "^8.0.1",
-    "semver": "^7.6.0"
+    "semver": "^7.6.0",
+    "shelljs": "^0.9.2"
   },
   "devDependencies": {
     "husky": "^9.0.11",
