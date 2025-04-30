@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+
+# Build output
+dist/
+tmp/
+out-tsc/
+.angular/
+.angular/cache/
+
+# IDE specific files
+.idea/
+.vscode/
+*.sublime-workspace
+*.swp
+*.swo
+
+# Unit test reports
+coverage/
+/.nyc_output
+
+# e2e test reports
+e2e/*.js
+e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Environment files (except the production one)
+.env
+.env.*
+!.env.production
+
+# Git related
+.git/
+.gitignore
+
+# Docker related
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Documentation and non-essential files
+README.md
+CHANGELOG.md
+LICENSE
+docs/
