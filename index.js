@@ -10,6 +10,9 @@ import { UpdateNotifier } from './lib/update-notifier.js';
 // Command handlers
 import { handleInitCommand } from './lib/commands.js';
 
+// Docker commands
+import { handleDockerMenu } from './lib/docker_commands.js';
+
 // Constants
 import { PROGRAM_VERSION, PROGRAM_DESCRIPTION } from './lib/constants.js';
 import { checkRequirements } from './lib/requirements.js';
@@ -41,14 +44,29 @@ async function initializeCLI() {
     .option('-a, --artifact-id <artifactId>', 'Java artifact ID', 'backend')
     .action(async (projectName, options) => {
       try {
-        // Move requirements check to be more selective
         checkRequirements();
         await handleInitCommand(projectName, options, __dirname);
+    
+        // Only check for update AFTER project scaffolding
+        const notifier = new UpdateNotifier('jangular-cli', false);
+        await notifier.checkForUpdate();
       } catch (error) {
         console.error(chalk.red('Error during project initialization:'), error);
         process.exit(1);
       }
     });
+
+    program
+    .command('docker')
+    .description('Manage and monitor Docker services')
+    .action(async () => {
+      try {
+        await handleDockerMenu();
+      } catch (err) {
+        console.error(chalk.red('Docker command failed:'), err);
+        process.exit(1);
+      }
+    });  
 
   program.parse(process.argv);
 
