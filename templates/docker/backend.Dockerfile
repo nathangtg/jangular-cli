@@ -1,32 +1,33 @@
 # Use official JDK 21 as a parent image
 FROM eclipse-temurin:21-jdk-jammy AS build
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the Maven POM file
-COPY pom.xml .
+# Install Maven
+RUN apt-get update && apt-get install -y maven
 
-# Copy the source code
+# Copy Maven files first for better caching
+COPY pom.xml .
 COPY src ./src
 
-# Package the application
-RUN apt-get update && apt-get install -y maven
+# Package the app
 RUN mvn package -DskipTests
 
+# -------------------
 # Runtime stage
+# -------------------
 FROM eclipse-temurin:21-jre-jammy
 
 WORKDIR /app
 
-# Copy the built artifact from the build stage
+# Copy only the built JAR from the previous stage
 COPY --from=build /app/target/*.jar app.jar
 
-# Set Spring Boot profile to use environment-specific configuration if needed
+# Set Spring profile
 ENV SPRING_PROFILES_ACTIVE=docker
 
-# Expose the default Spring Boot port
+# Expose Spring Boot port
 EXPOSE 8080
 
-# Command to run the Spring Boot application
+# Run the app
 ENTRYPOINT ["java", "-jar", "app.jar"]

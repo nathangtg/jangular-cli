@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci
+# Install dependencies (using npm install instead of npm ci)
+RUN npm install
 
 # Copy the rest of the application
 COPY . .
@@ -21,9 +21,6 @@ FROM nginx:alpine
 
 # Copy the build output to replace the default nginx contents
 COPY --from=build /app/dist/*/browser /usr/share/nginx/html
-
-# Copy custom nginx config if needed
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Create custom nginx config to listen on port 4200
 RUN echo 'server { \
