@@ -1,7 +1,7 @@
 # Jangular
 
 <p align="center">
-  <img src="logo.svg" alt="Jangular Logo" width="400" height="300">
+  <img src="logo.png" alt="Jangular Logo" width="400" height="300">
 </p>
 
 ## Enterprise-Grade Java API & Angular Starter Kit
