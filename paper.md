@@ -150,3 +150,5 @@ Future work includes:
 - Building a community-driven plugin ecosystem
 
 Jangular represents a promising approach to addressing the challenges of full-stack development with Java and Angular. By prioritizing developer experience [@douglas2023github; @atlassian2024research] and embracing modern software development practices, this conceptual framework could significantly enhance productivity and code quality in enterprise environments.
+
+# References
