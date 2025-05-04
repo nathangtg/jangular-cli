@@ -97,14 +97,12 @@ Creating new JAngular project: my-project
 #### CLI Command Reference
 
 ```bash
-# View help information
-jangular --help
 
 # Initialize a new project
-jangular init <projectName>
+npx jangular init <projectName>
 
 # Display version
-jangular --version
+npx jangular --version
 ```
 
 #### Manual Installation
