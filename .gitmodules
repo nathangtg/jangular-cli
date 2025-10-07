@@ -1,6 +1,0 @@
-[submodule "templates/frontend"]
-	path = templates/frontend
-	url = https://github.com/nathangtg/frontend
-[submodule "templates/backend"]
-	path = templates/backend
-	url = https://github.com/nathangtg/jangular-backend
