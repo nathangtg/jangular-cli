@@ -1,0 +1,89 @@
+<div class="container max-w-6xl mx-auto px-4 py-8">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold text-indigo-800">User Management</h2>
+  </div>
+
+  <div *ngIf="error" class="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-md">
+    <div class="flex items-center">
+      <div class="flex-shrink-0">
+        <i class="bi bi-exclamation-triangle text-red-500"></i>
+      </div>
+      <div class="ml-3">
+        <p class="text-sm text-red-700">{{ error }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <div class="bg-indigo-600 text-white px-6 py-4">
+      <div class="flex justify-between items-center">
+        <span class="font-medium">All Users</span>
+        <button class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <i class="bi bi-plus-lg mr-2"></i>Add User
+        </button>
+      </div>
+    </div>
+    <div class="p-6">
+      <div *ngIf="loading" class="text-center my-8">
+        <div class="inline-block w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+        <span class="sr-only">Loading...</span>
+      </div>
+
+      <div *ngIf="!loading && users.length === 0" class="text-center my-8">
+        <p class="text-gray-500">No users found.</p>
+      </div>
+
+      <div *ngIf="!loading && users.length > 0" class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead>
+            <tr>
+              <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+              <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+              <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+              <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Roles</th>
+              <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr *ngFor="let user of users" (click)="viewUserDetails(user.id)" class="hover:bg-indigo-50 cursor-pointer transition duration-150">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ user.id }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ user.firstName }} {{ user.lastName }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ user.email }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span *ngFor="let role of user.roles; let last = last"
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 mr-1">
+                  {{ role.replace('ROLE_', '') }}
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span *ngIf="user.active" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                  Active
+                </span>
+                <span *ngIf="!user.active" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                  Inactive
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <div class="flex space-x-2">
+                  <button
+                    (click)="deleteUser(user.id, $event)"
+                    class="px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-500 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                    title="Delete User">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                  <button
+                    (click)="editUser(user.id, $event)"
+                    class="px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    title="Edit User">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

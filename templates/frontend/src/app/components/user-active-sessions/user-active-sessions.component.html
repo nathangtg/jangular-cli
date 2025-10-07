@@ -1,0 +1,55 @@
+<div class="card">
+  <div class="card-header bg-primary text-white">
+    <div class="d-flex justify-content-between align-items-center">
+      <span>Active Sessions</span>
+      <button class="btn btn-sm btn-light" (click)="loadActiveSessions()">
+        <i class="bi bi-arrow-clockwise"></i> Refresh
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <!-- Loading spinner -->
+    <div *ngIf="loading" class="text-center my-4">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <!-- Error message -->
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+
+    <!-- No data message -->
+    <div *ngIf="!loading && activeSessions.length === 0" class="text-center my-4">
+      <p>No active sessions found for this user.</p>
+    </div>
+
+    <!-- Active sessions table -->
+    <div *ngIf="!loading && activeSessions.length > 0" class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Login Time</th>
+            <th>Session ID</th>
+            <th>IP Address</th>
+            <th>User Agent</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let session of activeSessions">
+            <td>{{ session.loginTime | date:'medium' }}</td>
+            <td>{{ session.ipAddress }}</td>
+            <td class="text-truncate" style="max-width: 200px;" title="{{ session.userAgent }}">
+              {{ session.userAgent }}
+            </td>
+            <!-- <td>
+              {{ ((new Date().getTime() - new Date(session.loginTime).getTime()) / 60000).toFixed(0) }} minutes
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

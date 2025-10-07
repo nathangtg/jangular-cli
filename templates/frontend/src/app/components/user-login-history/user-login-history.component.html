@@ -1,0 +1,79 @@
+<!-- src/app/modules/user/components/user-login-history/user-login-history.component.html -->
+<div class="card">
+  <div class="card-header bg-primary text-white">
+    <span>Login History</span>
+  </div>
+  <div class="card-body">
+    <!-- Date range filter -->
+    <form [formGroup]="dateRangeForm" (ngSubmit)="onSubmit()" class="mb-4">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-5">
+          <label for="startDate" class="form-label">Start Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="startDate"
+            formControlName="startDate">
+        </div>
+        <div class="col-md-5">
+          <label for="endDate" class="form-label">End Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="endDate"
+            formControlName="endDate">
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary w-100">Filter</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Loading spinner -->
+    <div *ngIf="loading" class="text-center my-4">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <!-- Error message -->
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+
+    <!-- No data message -->
+    <div *ngIf="!loading && loginHistory.length === 0" class="text-center my-4">
+      <p>No login history found for the selected date range.</p>
+    </div>
+
+    <!-- Login history table -->
+    <div *ngIf="!loading && loginHistory.length > 0" class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Login Time</th>
+            <th>Logout Time</th>
+            <th>IP Address</th>
+            <th>User Agent</th>
+            <th>Status</th>
+            <th>Session</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let login of loginHistory">
+            <td>{{ login.loginTime | date:'medium' }}</td>
+            <td>{{ login.logoutTime ? (login.logoutTime | date:'medium') : 'N/A' }}</td>
+            <td>{{ login.ipAddress }}</td>
+            <td class="text-truncate" style="max-width: 200px;" title="{{ login.userAgent }}">
+              {{ login.userAgent }}
+            </td>
+            <td>
+              <span *ngIf="login.logoutTime" class="badge bg-success">Logged Out</span>
+              <span *ngIf="!login.logoutTime" class="badge bg-warning">Logged In</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

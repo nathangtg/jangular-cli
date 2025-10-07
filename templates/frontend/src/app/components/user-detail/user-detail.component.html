@@ -1,0 +1,244 @@
+<!-- src/app/modules/user/components/user-detail/user-detail.component.html -->
+<div class="container mx-auto px-4 py-6">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold">User Details</h2>
+    <button class="px-4 py-2 border border-gray-300 rounded-md flex items-center gap-2 hover:bg-gray-100" (click)="goBack()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Back to List
+    </button>
+  </div>
+
+  <div *ngIf="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+    {{ error }}
+  </div>
+
+  <div *ngIf="loading" class="flex justify-center my-8">
+    <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+
+  <div *ngIf="!loading && user">
+    <nav class="flex border-b border-gray-200 mb-6">
+      <button
+        class="py-2 px-4 font-medium"
+        [ngClass]="{'text-blue-600 border-b-2 border-blue-600': activeTab === 'details', 'text-gray-500 hover:text-gray-700': activeTab !== 'details'}"
+        (click)="changeTab('details')">
+        User Details
+      </button>
+      <button
+        class="py-2 px-4 font-medium"
+        [ngClass]="{'text-blue-600 border-b-2 border-blue-600': activeTab === 'loginHistory', 'text-gray-500 hover:text-gray-700': activeTab !== 'loginHistory'}"
+        (click)="changeTab('loginHistory')">
+        Login History
+      </button>
+      <button
+        class="py-2 px-4 font-medium"
+        [ngClass]="{'text-blue-600 border-b-2 border-blue-600': activeTab === 'activeSessions', 'text-gray-500 hover:text-gray-700': activeTab !== 'activeSessions'}"
+        (click)="changeTab('activeSessions')">
+        Active Sessions
+      </button>
+    </nav>
+
+    <div [ngSwitch]="activeTab">
+      <div *ngSwitchCase="'details'">
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+          <div class="bg-blue-600 text-white px-4 py-3">
+            <div class="flex justify-between items-center">
+              <span class="font-medium">User Information</span>
+              <div class="flex gap-2">
+                <button
+                  *ngIf="!editMode"
+                  class="bg-white text-blue-600 px-2 py-1 rounded text-sm flex items-center gap-1 hover:bg-gray-100"
+                  (click)="toggleEditMode()">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                  </svg>
+                  Edit
+                </button>
+                <button
+                  *ngIf="!passwordChangeMode"
+                  class="bg-white text-blue-600 px-2 py-1 rounded text-sm flex items-center gap-1 hover:bg-gray-100"
+                  (click)="togglePasswordChangeMode()">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                  </svg>
+                  Change Password
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="p-4">
+            <!-- User Details Form -->
+            <form *ngIf="editMode" (ngSubmit)="updateUser()">
+              <div class="mb-4">
+                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                <input
+                  type="text"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="firstName"
+                  [(ngModel)]="user.firstName"
+                  name="firstName"
+                  required>
+              </div>
+              <div class="mb-4">
+                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                <input
+                  type="text"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="lastName"
+                  [(ngModel)]="user.lastName"
+                  name="lastName"
+                  required>
+              </div>
+              <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input
+                  type="email"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="email"
+                  [(ngModel)]="user.email"
+                  name="email"
+                  required>
+              </div>
+              <div class="flex justify-end">
+                <button type="button" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md mr-2 hover:bg-gray-300" (click)="toggleEditMode()">Cancel</button>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Save Changes</button>
+              </div>
+            </form>
+
+            <!-- Password Change Form -->
+            <form *ngIf="passwordChangeMode" (ngSubmit)="changePassword()">
+              <div class="mb-4">
+                <label for="oldPassword" class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                <input
+                  type="password"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="oldPassword"
+                  [(ngModel)]="passwordData.oldPassword"
+                  name="oldPassword"
+                  required>
+              </div>
+              <div class="mb-4">
+                <label for="newPassword" class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                <input
+                  type="password"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="newPassword"
+                  [(ngModel)]="passwordData.newPassword"
+                  name="newPassword"
+                  required>
+              </div>
+              <div class="mb-4">
+                <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                <input
+                  type="password"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="confirmPassword"
+                  [(ngModel)]="passwordData.confirmPassword"
+                  name="confirmPassword"
+                  required>
+              </div>
+              <div class="flex justify-end">
+                <button type="button" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md mr-2 hover:bg-gray-300" (click)="togglePasswordChangeMode()">Cancel</button>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Change Password</button>
+              </div>
+            </form>
+
+            <!-- User Details Display -->
+            <div *ngIf="!editMode && !passwordChangeMode">
+              <div class="grid grid-cols-1 md:grid-cols-4 mb-3">
+                <div class="font-bold">ID:</div>
+                <div class="md:col-span-3">{{ user.id }}</div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-4 mb-3">
+                <div class="font-bold">First Name:</div>
+                <div class="md:col-span-3">{{ user.firstName }}</div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-4 mb-3">
+                <div class="font-bold">Last Name:</div>
+                <div class="md:col-span-3">{{ user.lastName }}</div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-4 mb-3">
+                <div class="font-bold">Email:</div>
+                <div class="md:col-span-3">{{ user.email }}</div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-4 mb-3">
+                <div class="font-bold">Status:</div>
+                <div class="md:col-span-3">
+                  <span class="px-2 py-1 text-xs rounded-full" [ngClass]="user.active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'">
+                    {{ user.active ? 'Active' : 'Inactive' }}
+                  </span>
+                </div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-4 mb-3">
+                <div class="font-bold">Created At:</div>
+                <div class="md:col-span-3">{{ user.createdAt | date:'medium' }}</div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-4 mb-3">
+                <div class="font-bold">Updated At:</div>
+                <div class="md:col-span-3">{{ user.updatedAt | date:'medium' }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Roles Management -->
+        <div class="bg-white rounded-lg shadow overflow-hidden mt-6">
+          <div class="bg-blue-600 text-white px-4 py-3">
+            <span class="font-medium">User Roles</span>
+          </div>
+          <div class="p-4">
+            <div class="mb-6">
+              <h5 class="text-lg font-medium mb-3">Current Roles</h5>
+              <div *ngIf="user.roles.length === 0" class="text-gray-500">
+                No roles assigned to this user.
+              </div>
+              <div *ngIf="user.roles.length > 0" class="flex flex-wrap gap-2 mb-3">
+                <div *ngFor="let role of user.roles" class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full flex items-center">
+                  {{ role.replace('ROLE_', '') }}
+                  <button
+                    class="ml-2 text-blue-600 hover:text-blue-800"
+                    (click)="removeRole(role)">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h5 class="text-lg font-medium mb-3">Add Role</h5>
+              <div class="flex">
+                <select
+                  class="flex-grow px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  [(ngModel)]="selectedRole">
+                  <option [ngValue]="null">Select role...</option>
+                  <option *ngFor="let role of availableRoles" [ngValue]="role">
+                    {{ role.replace('ROLE_', '') }}
+                  </option>
+                </select>
+                <button
+                  class="px-4 py-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                  type="button"
+                  [disabled]="!selectedRole"
+                  (click)="addRole()">
+                  Add Role
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'loginHistory'">
+        <app-user-login-history [userId]="userId"></app-user-login-history>
+      </div>
+
+      <!-- <div *ngSwitchCase="'activeSessions'">
+        <app-user-active-sessions></app-user-active-sessions>
+      </div> -->
+    </div>
+  </div>
+</div>
