@@ -1,7 +1,7 @@
 {
   "name": "jangular-cli",
-  "version": "1.3.0",
-  "description": "A powerful CLI tool for rapidly bootstrapping Angular 17 & Spring Boot (Java 21) applications with integrated security, services, and enterprise-ready best practices.",
+  "version": "2.0.0",
+  "description": "A powerful CLI tool for rapidly bootstrapping enterprise-grade Angular 17 & Spring Boot (Java 21) applications with integrated security, authentication, database management, and Docker support.",
   "main": "index.js",
   "type": "module",
   "bin": {
@@ -11,31 +11,43 @@
     "check": "node lib/requirements.js",
     "build": "npm run test",
     "start": "node index.js",
-    "test": "node --check index.js"
+    "test": "node --check index.js",
+    "prepublishOnly": "npm run test"
   },
   "keywords": [
     "angular",
+    "angular17",
     "spring-boot",
+    "java21",
     "starter-kit",
     "enterprise",
-    "development",
-    "cli",
-    "automation",
-    "java",
-    "typescript",
     "fullstack",
+    "cli",
+    "generator",
+    "scaffolding",
+    "boilerplate",
+    "jwt",
     "authentication",
+    "authorization",
     "security",
     "spring-security",
-    "angular-services",
-    "scaffolding",
-    "microservices",
+    "rest-api",
+    "mysql",
+    "postgresql",
+    "mssql",
     "docker",
-    "containers"
+    "docker-compose",
+    "flyway",
+    "database-migration",
+    "typescript",
+    "tailwind",
+    "microservices",
+    "enterprise-application"
   ],
   "author": {
     "name": "Nathan G.",
-    "url": "https://github.com/nathangtg"
+    "email": "nathangtgmy@gmail.com",
+    "url": "https://nathangtg.com/"
   },
   "license": "MIT",
   "dependencies": {
@@ -57,15 +69,27 @@
     "lint-staged": "^15.2.10"
   },
   "engines": {
-    "node": ">=18",
-    "java": ">=21"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nathangtg/jangular-cli.git"
+    "url": "git+https://github.com/nathangtg/jangular-cli.git"
   },
   "bugs": {
     "url": "https://github.com/nathangtg/jangular-cli/issues"
   },
-  "homepage": "https://github.com/nathangtg/jangular-cli#readme"
+  "homepage": "https://jangular.nathangtg.com",
+  "files": [
+    "index.js",
+    "lib/",
+    "templates/",
+    "resources/",
+    "README.md",
+    "LICENSE.txt",
+    "logo.png"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

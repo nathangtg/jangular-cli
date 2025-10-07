@@ -1,164 +1,368 @@
-# Jangular
+# JAngular CLI
 
 <p align="center">
-  <img src="logo.png" alt="Jangular Logo" width="400" height="300">
+  <img src="logo.png" alt="JAngular Logo" width="400" height="300">
 </p>
 
-## Enterprise-Grade Java API & Angular Starter Kit
+<p align="center">
+  <strong>Enterprise-Grade Full-Stack Development Made Simple</strong>
+</p>
 
-Jangular is a comprehensive starter kit that combines the power of Spring Boot for backend development and Angular for frontend, with built-in authentication and authorization systems. This project aims to accelerate enterprise-level development by providing a robust foundation for creating secure, scalable applications.
+<p align="center">
+  <a href="https://www.npmjs.com/package/jangular-cli"><img src="https://img.shields.io/npm/v/jangular-cli.svg" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/jangular-cli"><img src="https://img.shields.io/npm/dm/jangular-cli.svg" alt="npm downloads"></a>
+  <a href="https://github.com/nathangtg/jangular-cli/blob/master/LICENSE.txt"><img src="https://img.shields.io/npm/l/jangular-cli.svg" alt="license"></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg" alt="node version"></a>
+  <a href="https://www.java.com"><img src="https://img.shields.io/badge/java-%3E%3D21-orange.svg" alt="java version"></a>
+</p>
 
-## Features
+<p align="center">
+  <a href="https://jangular.dev">Documentation</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-cli-commands">Commands</a> •
+  <a href="#-contributing">Contributing</a>
+</p>
 
-- **Full-Stack Solution**: Seamlessly integrates Spring Boot backend with Angular frontend
-- **Authentication & Authorization**: Pre-configured security using Spring Security and JWT tokens
-- **Database Flexibility**: Support for MySQL, PostgreSQL, and MSSQL databases
-- **Database Integration**: Database support with JPA/Hibernate
-- **Database Migration**: Automated database schema management with Flyway
-- **CLI Tool**: Simple command-line interface for project initialization
-- **Ready-to-Use Components**: Login, registration, and dashboard components
-- **Route Protection**: Built-in authentication guards for securing routes
-- **Token Management**: HTTP interceptors for automatic token handling
-- **Service Architecture**: Well-structured service layer for API communication
+---
 
-## Technologies
+## Overview
+
+**JAngular CLI** is a powerful command-line interface tool that rapidly bootstraps enterprise-grade full-stack applications combining **Angular 17+** (frontend) and **Spring Boot 3.x** with **Java 21** (backend). Get a production-ready application with authentication, authorization, database integration, and Docker support in minutes.
+
+## ✨ What's New in v2.0.0
+
+- 🎨 **Modern Documentation Site** - Beautiful, responsive documentation built with Next.js
+- 🐳 **Enhanced Docker Management** - Interactive Docker service management and monitoring
+- 🔐 **Advanced Security Features** - Account lockout, password history, and session management
+- 📊 **Improved User Management** - Comprehensive user administration with login history and active sessions
+- 🎯 **Better CLI Experience** - Enhanced prompts, validation, and error handling
+- 🚀 **Performance Optimizations** - Faster project generation and improved template processing
+- 📱 **Responsive UI Components** - Mobile-first Angular components with Tailwind CSS
+- 🔄 **Database Migration Improvements** - Enhanced Flyway integration with better schema management
+
+---
+
+## 🚀 Features
+
+### Backend (Spring Boot 3.x + Java 21)
+
+- ✅ **JWT Authentication & Authorization** - Secure token-based authentication with refresh tokens
+- ✅ **Multi-Database Support** - MySQL, PostgreSQL, and Microsoft SQL Server
+- ✅ **Database Migrations** - Automated schema management with Flyway
+- ✅ **Advanced Security** - Spring Security with CSRF protection, account lockout, and password policies
+- ✅ **User Management** - Complete CRUD operations with role-based access control
+- ✅ **Session Management** - Track and manage active user sessions
+- ✅ **Login History** - Comprehensive audit trail of authentication events
+- ✅ **RESTful API** - Well-structured endpoints following REST best practices
+- ✅ **Exception Handling** - Global error handling with meaningful responses
+- ✅ **Validation** - Bean validation for request DTOs
+- ✅ **Lombok Integration** - Reduced boilerplate code
+
+### Frontend (Angular 17+)
+
+- ✅ **Standalone Components** - Modern Angular architecture without NgModules
+- ✅ **Authentication UI** - Pre-built login, registration, and password reset components
+- ✅ **User Dashboard** - Complete user management interface
+- ✅ **Route Guards** - Protected routes with authentication guards
+- ✅ **HTTP Interceptors** - Automatic token attachment and error handling
+- ✅ **Reactive Forms** - Form validation and error handling
+- ✅ **Tailwind CSS** - Utility-first styling framework
+- ✅ **Responsive Design** - Mobile-first approach
+- ✅ **TypeScript** - Type-safe development
+- ✅ **Service Architecture** - Organized service layer for API communication
+
+### DevOps & Deployment
+
+- ✅ **Docker Support** - Pre-configured Dockerfiles and docker-compose
+- ✅ **Multi-Container Setup** - Database, backend, and frontend containers
+- ✅ **Development & Production Profiles** - Environment-specific configurations
+- ✅ **Health Checks** - Built-in health monitoring endpoints
+- ✅ **Volume Management** - Persistent data storage configuration
+- ✅ **Network Isolation** - Secure container networking
+
+### CLI Features
+
+- ✅ **Interactive Setup** - Step-by-step project configuration
+- ✅ **System Requirements Check** - Validates dependencies before project creation
+- ✅ **Docker Management** - Built-in Docker service management
+- ✅ **Progress Indicators** - Real-time feedback during project generation
+- ✅ **Validation** - Input validation for all configuration options
+- ✅ **Error Handling** - Clear error messages and recovery suggestions
+
+---
+
+## 📋 Technologies
 
 ### Backend
-- Java 21
-- Spring Boot 3.4.3
-- Spring Security
-- Spring Data JPA
-- JWT Authentication
-- Flyway Migration
-- MySQL, PostgreSQL, or MSSQL support
-- Lombok
-- Maven
+- **Java 21** - Latest LTS version with modern features
+- **Spring Boot 3.4.3** - Enterprise application framework
+- **Spring Security** - Authentication and authorization
+- **Spring Data JPA** - Database access and ORM
+- **JWT Authentication** - Stateless token-based security
+- **Flyway Migration** - Version-controlled database migrations
+- **Lombok** - Reduced boilerplate code
+- **Maven** - Build automation and dependency management
 
 ### Frontend
-- Angular (latest version)
-- TypeScript
-- Angular Material
-- RxJS
-- Lazy-loaded modules
-- Route Guards
-- HTTP Interceptors
-- Reactive Forms
+- **Angular 17+** - Modern web framework with standalone components
+- **TypeScript** - Type-safe JavaScript development
+- **Tailwind CSS** - Utility-first styling framework
+- **RxJS** - Reactive programming
+- **Route Guards** - Authentication-based route protection
+- **HTTP Interceptors** - Centralized request/response handling
+- **Reactive Forms** - Type-safe form management
 
 ### CLI Tool
-- Node.js
-- Commander.js
-- Inquirer.js
-- Chalk
-- fs-extra
+- **Node.js** - JavaScript runtime
+- **Commander.js** - Command-line interface framework
+- **Inquirer.js** - Interactive command line prompts
+- **Chalk** - Terminal string styling
+- **Ora** - Elegant terminal spinners
+- **fs-extra** - Enhanced file system operations
 
-## Getting Started
+---
 
-### Prerequisites
-- Java 21 or higher
-- Node.js 16 or higher
-- npm or yarn
-- MySQL 8.0 or higher, PostgreSQL, or MSSQL
-- Maven 3.6 or higher
+## 📋 Prerequisites
 
-### Installation
+Before using JAngular CLI, ensure you have the following installed:
 
-#### Using the Jangular CLI (Recommended)
+| Requirement | Version | Description |
+|------------|---------|-------------|
+| **Node.js** | 18.0.0+ | JavaScript runtime for Angular development |
+| **Java** | 21+ | OpenJDK or Oracle JDK for Spring Boot |
+| **Maven** | 3.6.0+ | Build automation tool for Java projects |
+| **Angular CLI** | 17.0.0+ | Official Angular command line interface |
+| **Docker** | Latest | (Optional) For containerized deployment |
+| **Git** | Latest | Version control system |
+
+### Installation Check
+
+Verify your system meets the requirements:
 
 ```bash
-# Install the Jangular CLI
-npm install jangular-cli
+# Check Node.js version
+node --version
 
-# Create a new Jangular project
-jangular init my-project
+# Check Java version
+java -version
+
+# Check Maven version
+mvn -version
+
+# Check Angular CLI version
+ng version
+```
+
+---
+
+## 🎯 Quick Start
+
+### Install JAngular CLI
+
+```bash
+# Install globally via npm
+npm install -g jangular-cli
+
+# Verify installation
+jangular --version
+```
+
+### Create Your First Project
+
+```bash
+# Create a new project
+jangular init my-awesome-app
 
 # Navigate to your project
-cd my-project
+cd my-awesome-app
 
-# Start the backend
-npm run start:backend
+# Install dependencies
+npm run install:all
 
-# In another terminal, start the frontend
-npm run start:frontend
+# Start development servers
+npm run start:backend    # Terminal 1 - Spring Boot (port 8080)
+npm run start:frontend   # Terminal 2 - Angular (port 4200)
 ```
 
-#### Interactive CLI Setup
+### Access Your Application
 
-When initializing a new project, the CLI will prompt you for configuration options:
+- **Frontend**: http://localhost:4200
+- **Backend API**: http://localhost:8080
+- **API Documentation**: http://localhost:8080/swagger-ui.html
 
-```
-Creating new JAngular project: my-project
-✔ Enter base package name: com.example.myproject
-✔ Select database type: [MySQL/PostgreSQL/MSSQL]
-✔ Enter database name: my_project_db
-✔ Enter database username: devuser
-✔ Enter database password: ********
-```
+---
 
-#### CLI Command Reference
+## 📚 CLI Commands
+
+### `jangular init <projectName>`
+
+Initialize a new JAngular project with interactive configuration.
 
 ```bash
-
-# Initialize a new project
-npx jangular init <projectName>
-
-# Display version
-npx jangular --version
+jangular init my-enterprise-app
 ```
 
-#### Manual Installation
+**Options:**
+- `-g, --group-id <groupId>` - Java group ID (default: com.example)
+- `-a, --artifact-id <artifactId>` - Java artifact ID (default: backend)
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/jangular.git
-   cd jangular
-   ```
+**Interactive Prompts:**
+1. Project name confirmation
+2. Java package configuration (group ID, artifact ID)
+3. Database selection (MySQL, PostgreSQL, MSSQL)
+4. Database connection details (host, port, name)
+5. Database credentials (username, password)
 
-2. Configure your database settings in `application.properties` or `application.yml`.
+### `jangular docker`
 
-3. Build and run the backend:
-   ```bash
-   mvn clean install
-   mvn spring-boot:run
-   ```
+Manage Docker services for your project with an interactive interface.
 
-4. In a separate terminal, navigate to the frontend directory and run:
-   ```bash
-   cd frontend
-   npm install
-   ng serve
-   ```
+```bash
+jangular docker
+```
 
-## Project Structure
+**Features:**
+- Start/stop all containers
+- View service logs in real-time
+- Check database connectivity
+- Reset volumes and data
+- Production mode deployment
+
+### `jangular --test`
+
+Run system requirements check to verify all dependencies are installed.
+
+```bash
+jangular --test
+```
+
+### `jangular --version`
+
+Display the current version of JAngular CLI.
+
+```bash
+jangular --version
+```
+
+### `jangular --help`
+
+Display help information and available commands.
+
+```bash
+jangular --help
+```
+
+---
+
+## 🏗️ Project Structure
 
 ```
-jangular-project/
-├── backend/                 # Spring Boot application
+
+```
+my-awesome-app/
+├── backend/                      # Spring Boot Application
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/       # Java source files
-│   │   │   ├── resources/  # Backend resources
-│   │   │   │   ├── db/migration/  # Flyway migration scripts
-│   │   └── test/           # Test files
-│   └── pom.xml             # Maven configuration
-├── frontend/               # Angular application
+│   │   │   ├── java/com/example/app/
+│   │   │   │   ├── BackendApplication.java
+│   │   │   │   ├── config/          # Configuration classes
+│   │   │   │   ├── controller/      # REST controllers
+│   │   │   │   ├── dto/             # Data Transfer Objects
+│   │   │   │   ├── entity/          # JPA entities
+│   │   │   │   ├── repository/      # Spring Data repositories
+│   │   │   │   ├── service/         # Business logic
+│   │   │   │   ├── security/        # Security configuration
+│   │   │   │   └── exception/       # Exception handlers
+│   │   │   └── resources/
+│   │   │       ├── application.properties
+│   │   │       ├── application-mysql.properties
+│   │   │       ├── application-postgresql.properties
+│   │   │       ├── application-mssql.properties
+│   │   │       └── db/migration/    # Flyway migrations
+│   │   └── test/                    # Unit and integration tests
+│   ├── pom.xml                      # Maven configuration
+│   ├── Dockerfile                   # Backend container config
+│   └── README.md
+│
+├── frontend/                        # Angular Application
 │   ├── src/
 │   │   ├── app/
-│   │   │   ├── auth/       # Authentication module
-│   │   │   ├── components/ # UI components
-│   │   │   ├── services/   # API services
-│   │   │   ├── guards/     # Route guards
-│   │   │   └── interceptors/ # HTTP interceptors
-│   │   ├── assets/         # Static assets
-│   │   └── environments/   # Environment configurations
-│   ├── package.json        # NPM dependencies
-│   └── angular.json        # Angular CLI configuration
-├── package.json            # Root package.json with scripts
-└── README.md               # Project documentation
+│   │   │   ├── auth/               # Authentication module
+│   │   │   ├── components/         # Reusable components
+│   │   │   ├── guards/             # Route guards
+│   │   │   ├── interceptors/       # HTTP interceptors
+│   │   │   ├── models/             # TypeScript interfaces
+│   │   │   ├── services/           # API services
+│   │   │   ├── app.component.ts
+│   │   │   ├── app.config.ts
+│   │   │   └── app.routes.ts
+│   │   ├── assets/                 # Static assets
+│   │   ├── environments/           # Environment configs
+│   │   └── styles.css              # Global styles
+│   ├── angular.json                # Angular CLI config
+│   ├── package.json
+│   ├── tailwind.config.js
+│   ├── Dockerfile                  # Frontend container config
+│   └── README.md
+│
+├── docker-compose.yml               # Multi-container orchestration
+├── package.json                     # Root project scripts
+└── README.md                        # Project documentation
 ```
 
-## Database Configuration
+---
 
-Jangular supports multiple database systems:
+## 🔐 Authentication Flow
+
+1. **User Registration/Login** - Frontend sends credentials to backend
+2. **Token Generation** - Backend validates and issues JWT tokens (access + refresh)
+3. **Token Storage** - Tokens stored securely in browser local storage
+4. **API Requests** - HTTP interceptor attaches access token to requests
+5. **Token Validation** - Backend validates token for protected endpoints
+6. **Token Refresh** - Automatic token renewal before expiration
+7. **Logout** - Token invalidation and cleanup
+
+---
+
+## 🌐 API Endpoints
+
+### Authentication (`/api/auth`)
+
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| POST | `/api/auth/login` | User authentication | Public |
+| POST | `/api/auth/register` | New user registration | Public |
+| POST | `/api/auth/refresh` | Refresh access token | Public |
+| POST | `/api/auth/logout` | User logout | Authenticated |
+| POST | `/api/auth/forgot-password` | Initiate password reset | Public |
+| POST | `/api/auth/reset-password` | Complete password reset | Public |
+
+### User Management (`/api/users`)
+
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| GET | `/api/users` | List all users | Admin |
+| GET | `/api/users/{id}` | Get user by ID | User/Admin |
+| PUT | `/api/users/{id}` | Update user info | User/Admin |
+| DELETE | `/api/users/{id}` | Delete user | Admin |
+| POST | `/api/users/{id}/roles` | Assign roles | Admin |
+| GET | `/api/users/{id}/sessions` | View active sessions | User/Admin |
+| GET | `/api/users/{id}/login-history` | View login history | User/Admin |
+
+### Profile Management (`/api/profile`)
+
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| GET | `/api/profile` | Get current user profile | Authenticated |
+| PUT | `/api/profile` | Update profile | Authenticated |
+| POST | `/api/profile/change-password` | Change password | Authenticated |
+
+---
+
+## 🗄️ Database Configuration
+
+JAngular supports multiple database systems with pre-configured profiles:
 
 ### MySQL Configuration
 
@@ -193,181 +397,139 @@ spring:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 ```
 
-## Contributing to Templates
+---
 
-Jangular uses Git submodules for the frontend and backend templates:
-- Backend template: `github/nathangtg/jangular-backend`
-- Frontend template: `github/nathangtg/frontend`
+## 🐳 Docker Deployment
 
-### How to Contribute
+### Quick Start with Docker
 
-1. **Clone the repository with submodules**:
-   ```bash
-   git clone --recurse-submodules https://github.com/yourusername/jangular-cli.git
-   cd jangular-cli
-   ```
+```bash
+# Start all services
+docker-compose up -d
 
-2. **Update submodules** (if you didn't clone with `--recurse-submodules`):
-   ```bash
-   git submodule update --init --recursive
-   ```
+# View logs
+docker-compose logs -f
 
-3. **Making changes to templates**:
+# Stop all services
+docker-compose down
 
-   For backend template:
-   ```bash
-   # Navigate to backend template
-   cd templates/backend
-   
-   # Make your changes
-   
-   # Commit and push changes
-   git add .
-   git commit -m "Description of your changes"
-   git push origin master
-   ```
-
-   For frontend template:
-   ```bash
-   # Navigate to frontend template
-   cd templates/frontend
-   
-   # Make your changes
-   
-   # Commit and push changes
-   git add .
-   git commit -m "Description of your changes"
-   git push origin master
-   ```
-
-4. **Update the main repository to reference the new template version**:
-   ```bash
-   # Return to the main project directory
-   cd ..
-   
-   # Update the submodule reference
-   git add templates/backend  # or templates/frontend
-   git commit -m "Update template reference"
-   git push
-   ```
-
-## API Endpoints
-
-### Authentication Controller (`/api/auth`)
-
-| Method | Endpoint | Description | Access |
-|--------|----------|-------------|--------|
-| POST | `/api/auth/login` | User login | Public |
-| POST | `/api/auth/register` | User registration | Public |
-| POST | `/api/auth/refresh` | Refresh access token | Public |
-| POST | `/api/auth/logout` | User logout | Authenticated |
-
-### User Controller (`/api/users`)
-
-| Method | Endpoint | Description | Access |
-|--------|----------|-------------|--------|
-| GET | `/api/users/me` | Get current user info | Authenticated |
-| GET | `/api/users/{id}` | Get user by ID | Admin |
-| GET | `/api/users` | Get all users | Admin |
-| PUT | `/api/users/{id}` | Update user information | User or Admin |
-| POST | `/api/users/{id}/change-password` | Change user password | User or Admin |
-| DELETE | `/api/users/{id}` | Soft delete a user | Admin |
-| POST | `/api/users/{id}/roles` | Add role to user | Admin |
-| DELETE | `/api/users/{id}/roles/{roleName}` | Remove role from user | Admin |
-| GET | `/api/users/{id}/login-history` | Get user login history | User or Admin |
-| GET | `/api/users/{id}/login-history/range` | Get login history for date range | User or Admin |
-| GET | `/api/users/{id}/active-sessions` | Get active sessions | User or Admin |
-
-## Authentication System
-
-### Authentication Flow
-
-1. User registers/logs in through the Angular frontend
-2. Backend validates credentials and issues JWT tokens (access and refresh)
-3. Tokens are stored securely in the browser's local storage
-4. Token interceptor attaches the access token to all subsequent API requests
-5. Protected routes check token validity using the auth guard
-6. Refresh token functionality automatically renews expired tokens
-
-## Angular Routes Configuration
-
-The following table provides an overview of the application's route structure.
-
-### Main Application Routes
-
-| Path          | Component/Module | Guard(s)     | Description |
-|--------------|----------------|-------------|-------------|
-| `/auth`      | `AuthModule` (Lazy-loaded) | None | Loads authentication-related routes (Login/Register) |
-| `/dashboard` | `DashboardComponent` | `authGuard` | Protected dashboard for authenticated users |
-| `/admin/users` | `UserModule` (Lazy-loaded) | `AdminGuard` (Inside `UserModule`) | Admin panel for managing users |
-| `/`          | Redirects to `/dashboard` | None | Default redirection |
-
-### User Module Routes (`/admin/users`)
-
-| Path             | Component             | Guard(s)     | Description |
-|-----------------|----------------------|-------------|-------------|
-| `/admin/users`  | `UserListComponent`   | `AdminGuard` | Displays a list of users |
-| `/admin/users/:id` | `UserDetailComponent` | `AdminGuard` | Shows details of a specific user |
-| `/admin/users/:id/edit` | `UserDetailComponent` | `AdminGuard` | Edit user details |
-
-The **User Module** is lazily loaded to improve performance, ensuring admin-related routes are only loaded when required.
-
-
-## Key Services
-
-### Auth Service
-
-```typescript
-// Key methods provided by AuthService
-login(username: string, password: string): Observable<AuthResponse>
-register(user: RegisterRequest): Observable<UserDTO>
-refreshToken(refreshToken: string): Observable<AuthResponse>
-logout(): void
-isAuthenticated(): boolean
-getAccessToken(): string
+# Remove volumes (reset data)
+docker-compose down -v
 ```
 
-### User Service
+### Docker Services
 
-```typescript
-// Key methods provided by UserService
-getCurrentUser(): Observable<UserDTO>
-getUserById(id: number): Observable<UserDTO>
-updateUser(id: number, user: UserDTO): Observable<UserDTO>
-changePassword(id: number, oldPassword: string, newPassword: string): Observable<void>
+- **database** - MySQL/PostgreSQL/MSSQL database
+- **backend** - Spring Boot API (port 8080)
+- **frontend** - Angular application (port 80)
+
+### Environment Variables
+
+Configure services via environment variables in `docker-compose.yml`:
+
+```yaml
+environment:
+  - SPRING_PROFILES_ACTIVE=mysql
+  - DB_HOST=database
+  - DB_PORT=3306
+  - DB_NAME=myapp
+  - DB_USER=root
+  - DB_PASSWORD=root
 ```
 
-## Customization
+---
 
-- Modify authentication providers in Spring Security configuration
-- Add custom user roles and permissions
-- Extend the database schema for additional user properties
-- Customize UI components to match your brand identity
-- Add additional Angular modules and components
-- Extend authentication with social login providers
-- Configure different database providers based on your infrastructure requirements
-
-## Development Workflow
+## 🛠️ Development
 
 ### Backend Development
 
-1. Define entity models in Java classes
-2. Create repositories for database operations
-3. Implement service layer for business logic
-4. Expose REST endpoints through controllers
-5. Configure security settings for endpoints
+```bash
+cd backend
+
+# Run tests
+mvn test
+
+# Build JAR
+mvn clean package
+
+# Run with specific profile
+mvn spring-boot:run -Dspring-boot.run.profiles=mysql
+```
 
 ### Frontend Development
 
-1. Create new components using Angular CLI
-2. Define services for API communication
-3. Set up routes in the appropriate module
-4. Implement components with reactive forms
-5. Style components according to your design system
+```bash
+cd frontend
 
-## Contributing
+# Install dependencies
+npm install
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+# Start dev server
+ng serve
+
+# Build for production
+ng build --configuration production
+
+# Run tests
+ng test
+
+# Run e2e tests
+ng e2e
+```
+
+### Available NPM Scripts
+
+```bash
+# Root level scripts
+npm run install:all        # Install all dependencies
+npm run start:backend      # Start Spring Boot
+npm run start:frontend     # Start Angular
+npm run build:backend      # Build backend JAR
+npm run build:frontend     # Build Angular for production
+npm run docker:up          # Start Docker containers
+npm run docker:down        # Stop Docker containers
+```
+
+---
+
+## 🎨 Customization
+
+### Backend Customization
+
+- **Add Custom Entities** - Create new JPA entities in `entity/` package
+- **Extend Security** - Modify `SecurityConfig.java` for custom security rules
+- **Add Endpoints** - Create new controllers in `controller/` package
+- **Custom Validation** - Add validators in `dto/` package
+- **Database Migrations** - Add new Flyway scripts in `db/migration/`
+
+### Frontend Customization
+
+- **Add Components** - Generate with `ng generate component <name>`
+- **Add Services** - Generate with `ng generate service <name>`
+- **Customize Styles** - Modify Tailwind configuration in `tailwind.config.js`
+- **Add Routes** - Update `app.routes.ts` with new routes
+- **Extend Guards** - Create custom guards for route protection
+
+---
+
+## 📖 Documentation
+
+Comprehensive documentation is available at **[jangular.dev](https://jangular.dev)**
+
+- [Getting Started Guide](https://jangular.dev/getting-started)
+- [CLI Commands Reference](https://jangular.dev/commands)
+- [Backend Documentation](https://jangular.dev/backend)
+- [Frontend Documentation](https://jangular.dev/frontend)
+- [Docker Deployment Guide](https://jangular.dev/docker)
+- [FAQ](https://jangular.dev/faq)
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### How to Contribute
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
@@ -375,10 +537,105 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## License
+### Development Setup
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+```bash
+# Clone the repository
+git clone https://github.com/nathangtg/jangular-cli.git
+cd jangular-cli
+
+# Install dependencies
+npm install
+
+# Run in development mode
+npm start
+
+# Run tests
+npm test
+```
 
 ---
 
-**Jangular** - Accelerating Enterprise Application Development
+## 🐛 Bug Reports
+
+Found a bug? Please create an issue on [GitHub Issues](https://github.com/nathangtg/jangular-cli/issues) with:
+
+- Description of the bug
+- Steps to reproduce
+- Expected behavior
+- Actual behavior
+- System information (OS, Node.js version, Java version)
+
+---
+
+## 💡 Feature Requests
+
+Have an idea for a new feature? We'd love to hear it! Create a feature request on [GitHub Issues](https://github.com/nathangtg/jangular-cli/issues) with:
+
+- Clear description of the feature
+- Use case and benefits
+- Any relevant examples or mockups
+
+---
+
+## 📝 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes in each version.
+
+### v2.0.0 Highlights
+
+- Modern documentation site with Next.js
+- Enhanced Docker management interface
+- Advanced security features
+- Improved user management
+- Better CLI experience
+- Performance optimizations
+- Responsive UI components
+- Database migration improvements
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- [Angular](https://angular.io) - Modern web framework
+- [Spring Boot](https://spring.io/projects/spring-boot) - Java application framework
+- [Spring Security](https://spring.io/projects/spring-security) - Authentication and authorization
+- [Flyway](https://flywaydb.org) - Database migration tool
+- [Docker](https://www.docker.com) - Containerization platform
+- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
+
+---
+
+## 📞 Support
+
+- 📧 Email: nathan@jangular.dev
+- 💬 GitHub Discussions: [Join our community](https://github.com/nathangtg/jangular-cli/discussions)
+- 🐛 Issues: [Report bugs](https://github.com/nathangtg/jangular-cli/issues)
+- 📚 Documentation: [jangular.dev](https://jangular.dev)
+
+---
+
+## ⭐ Show Your Support
+
+If you find JAngular CLI helpful, please consider:
+
+- ⭐ Starring the repository on [GitHub](https://github.com/nathangtg/jangular-cli)
+- 🐦 Sharing on social media
+- 📝 Writing a blog post or tutorial
+- 💬 Spreading the word to other developers
+
+---
+
+<p align="center">
+  <strong>Built with ❤️ by developers, for developers</strong>
+</p>
+
+<p align="center">
+  <sub>JAngular CLI - Accelerating Enterprise Application Development</sub>
+</p>
