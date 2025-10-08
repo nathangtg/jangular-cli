@@ -6,23 +6,22 @@ export default function FrontendPage() {
     <div className="min-h-screen bg-background text-foreground">
       <Sidebar />
       
-      <div className="lg-pl-64">
+      <div className="lg:pl-64">
         <Header />
         
-        <div className="py-8 px-4 sm-px-6 lg-px-8 overflow-x-hidden">
+        <div className="py-8 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
           <div className="max-w-4xl mx-auto">
             <main className="animate-fade-in-up">
               {/* Page Header */}
               <div className="mb-12">
                 <h1 className="text-4xl font-bold text-foreground mb-4">Frontend Features</h1>
-                <p className="text-xl text-foreground-muted leading-relaxed">
+                <p className="text-xl text-muted-foreground leading-relaxed">
                   Comprehensive overview of the JAngular Angular 17+ frontend architecture, components, and modern development features.
                 </p>
               </div>
 
               {/* Content */}
-              <div className="prose prose-gray dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-foreground prose-code:text-foreground prose-code:bg-card/50 prose-pre:bg-gray-900 prose-pre:text-gray-100">
-                
+              <div className="prose prose-gray dark:prose-invert max-w-none">
                 <p>The JAngular frontend is built with <strong>Angular 17+</strong> using the latest features including standalone components, signal-based state management, and modern development tools. It provides a complete enterprise-ready frontend with authentication, user management, and responsive design.</p>
 
                 <h2 id="angular-features">Modern Angular Features</h2>
@@ -228,12 +227,14 @@ export default function FrontendPage() {
                 <h2 id="project-structure">Frontend Project Structure</h2>
                 <p>Well-organized project structure following Angular best practices:</p>
 
-                <pre><code>frontend/
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`frontend/
 ├── src/
 │   ├── app/
-│   │   ├── app.component.ts            # Root application component
-│   │   ├── app.component.html          # Main application template
-│   │   ├── app.component.css           # Global application styles
+│   │   ├── app.component.ts           # Root application component
+│   │   ├── app.component.html         # Main application template
+│   │   ├── app.component.css          # Global application styles
 │   │   ├── app.config.ts              # Application configuration and providers
 │   │   ├── app.routes.ts              # Main routing configuration
 │   │   │
@@ -246,9 +247,9 @@ export default function FrontendPage() {
 │   │   │   │   ├── error.interceptor.ts   # Global error handling
 │   │   │   │   └── loading.interceptor.ts # Loading state management
 │   │   │   └── services/
-│   │   │       ├── auth.service.ts    # Authentication service
+│   │   │       ├── auth.service.ts        # Authentication service
 │   │   │       ├── notification.service.ts # Toast notifications
-│   │   │       └── loading.service.ts # Loading state service
+│   │   │       └── loading.service.ts     # Loading state service
 │   │   │
 │   │   ├── shared/                    # Shared module (common components)
 │   │   │   ├── components/
@@ -297,7 +298,7 @@ export default function FrontendPage() {
 │   │   │       │   ├── user-sessions/
 │   │   │       │   └── user-login-history/
 │   │   │       ├── services/
-│   │   │       │   └── user.service.ts    # User management service
+│   │   │       │   └── user.service.ts # User management service
 │   │   │       ├── user-management.routes.ts
 │   │   │       └── user-management.module.ts
 │   │   │
@@ -324,8 +325,8 @@ export default function FrontendPage() {
 │   │
 │   ├── styles/                        # Global styles
 │   │   ├── styles.css                 # Global CSS imports
-│   │   ├── tailwind.css              # Tailwind CSS configuration
-│   │   └── variables.css             # CSS custom properties
+│   │   ├── tailwind.css               # Tailwind CSS configuration
+│   │   └── variables.css              # CSS custom properties
 │   │
 │   ├── index.html                     # Main HTML file
 │   └── main.ts                        # Application bootstrap
@@ -337,7 +338,9 @@ export default function FrontendPage() {
 ├── tsconfig.spec.json                 # Test-specific TypeScript config
 ├── tailwind.config.js                 # Tailwind CSS configuration
 ├── karma.conf.js                      # Test runner configuration
-└── README.md                          # Frontend documentation</code></pre>
+└── README.md                          # Frontend documentation`}
+                  </pre>
+                </div>
 
                 <hr />
 
@@ -345,28 +348,31 @@ export default function FrontendPage() {
                 <p>Flexible environment management for different deployment scenarios:</p>
 
                 <h3>Environment Files</h3>
-                <pre><code># environment.ts (Development)
-export const environment = &#123;
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# environment.ts (Development)
+export const environment = {
   production: false,
-  apiUrl: &apos;http://localhost:8080/api&apos;,
-  authUrl: &apos;http://localhost:8080/auth&apos;,
-  tokenKey: &apos;jangular_token&apos;,
-  refreshTokenKey: &apos;jangular_refresh_token&apos;
-&#125;;
+  apiUrl: 'http://localhost:8080/api',
+  authUrl: 'http://localhost:8080/auth',
+  tokenKey: 'jangular_token',
+  refreshTokenKey: 'jangular_refresh_token'
+};
 
 # environment.prod.ts (Production)
-export const environment = &#123;
+export const environment = {
   production: true,
-  apiUrl: &apos;https://api.yourdomain.com/api&apos;,
-  authUrl: &apos;https://api.yourdomain.com/auth&apos;,
-  tokenKey: &apos;jangular_token&apos;,
-  refreshTokenKey: &apos;jangular_refresh_token&apos;
-&#125;;</code></pre>
+  apiUrl: 'https://api.yourdomain.com/api',
+  authUrl: 'https://api.yourdomain.com/auth',
+  tokenKey: 'jangular_token',
+  refreshTokenKey: 'jangular_refresh_token'
+};`}
+                  </pre>
+                </div>
 
                 <blockquote>
                   <p><strong>Development Note:</strong> The frontend includes comprehensive unit tests, end-to-end testing setup, internationalization support, and progressive web app capabilities for enhanced user experience.</p>
                 </blockquote>
-
               </div>
             </main>
           </div>
