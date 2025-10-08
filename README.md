@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>Enterprise-Grade Full-Stack Development Made Simple</strong>
+  <strong>Enterprise-Grade Full-Stack Development simplified</strong>
 </p>
 
 <p align="center">
