@@ -125,6 +125,7 @@ JAngular CLI v2.0.0 represents a significant milestone with major improvements t
 - **Publish Config** - Added publish configuration for public access
 - **Engines** - Specified Node.js and npm version requirements
 - **Keywords** - Expanded keywords for better discoverability
+- **GitHub Packages** - GitHub Package publishing
 
 ## [1.3.0] 
 
