@@ -74,7 +74,9 @@ export default function BackendPage() {
                 </ul>
 
                 <h3>Migration Structure</h3>
-                <pre><code>src/main/resources/db/migration/
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto">
+                  <div className="text-sm font-mono text-gray-100 whitespace-pre leading-relaxed">
+{`src/main/resources/db/migration/
 ├── mysql/
 │   ├── V1__Create_users_table.sql
 │   ├── V2__Create_roles_table.sql
@@ -86,7 +88,9 @@ export default function BackendPage() {
 └── mssql/
     ├── V1__Create_users_table.sql
     ├── V2__Create_roles_table.sql
-    └── V3__Create_user_sessions_table.sql</code></pre>
+    └── V3__Create_user_sessions_table.sql`}
+                  </div>
+                </div>
 
                 <hr />
 
@@ -166,7 +170,9 @@ export default function BackendPage() {
                 </ul>
 
                 <h3>Key Configuration Properties</h3>
-                <pre><code># JWT Configuration
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto">
+                  <div className="text-sm font-mono text-gray-100 whitespace-pre leading-relaxed">
+{`# JWT Configuration
 app.jwt.secret=your-secret-key
 app.jwt.access-token-expiration=900000    # 15 minutes
 app.jwt.refresh-token-expiration=604800000 # 7 days
@@ -180,7 +186,9 @@ app.security.password-history-limit=12
 spring.datasource.url=jdbc:mysql://localhost:3306/myapp
 spring.datasource.username=user
 spring.datasource.password=password
-spring.jpa.hibernate.ddl-auto=validate</code></pre>
+spring.jpa.hibernate.ddl-auto=validate`}
+                  </div>
+                </div>
 
                 <hr />
 
@@ -216,7 +224,9 @@ spring.jpa.hibernate.ddl-auto=validate</code></pre>
                 <h2 id="project-structure">Backend Project Structure</h2>
                 <p>Well-organized Maven project following Spring Boot best practices:</p>
 
-                <pre><code>backend/
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto">
+                  <div className="text-sm font-mono text-gray-100 whitespace-pre leading-relaxed">
+{`backend/
 ├── src/main/java/com/example/myapp/
 │   ├── BackendApplication.java          # Main Spring Boot application class
 │   ├── config/
@@ -261,11 +271,16 @@ spring.jpa.hibernate.ddl-auto=validate</code></pre>
 ├── src/test/java/                      # Unit and integration tests
 ├── pom.xml                            # Maven dependencies and build config
 ├── Dockerfile                         # Docker container configuration
-└── README.md                          # Backend-specific documentation</code></pre>
+└── README.md                          # Backend-specific documentation`}
+                  </div>
+                </div>
 
-                <blockquote>
-                  <p><strong>Development Note:</strong> The backend includes comprehensive unit and integration tests, Docker support for containerized deployment, and detailed API documentation generated from OpenAPI annotations.</p>
-                </blockquote>
+                <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-6 my-6">
+                  <h3 className="text-lg font-semibold text-amber-900 dark:text-amber-100 mb-3">💡 Development Note</h3>
+                  <p className="text-amber-800 dark:text-amber-200">
+                    The backend includes comprehensive unit and integration tests, Docker support for containerized deployment, and detailed API documentation generated from OpenAPI annotations.
+                  </p>
+                </div>
 
               </div>
             </main>
