@@ -6,23 +6,22 @@ export default function DockerPage() {
     <div className="min-h-screen bg-background text-foreground">
       <Sidebar />
       
-      <div className="lg-pl-64">
+      <div className="lg:pl-64">
         <Header />
         
-        <div className="py-8 px-4 sm-px-6 lg-px-8 overflow-x-hidden">
+        <div className="py-8 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
           <div className="max-w-4xl mx-auto">
             <main className="animate-fade-in-up">
               {/* Page Header */}
               <div className="mb-12">
                 <h1 className="text-4xl font-bold text-foreground mb-4">Docker Integration</h1>
-                <p className="text-xl text-foreground-muted leading-relaxed">
+                <p className="text-xl text-muted-foreground leading-relaxed">
                   Complete containerization solution for JAngular applications with Docker Compose, multi-stage builds, and production-ready deployment configurations.
                 </p>
               </div>
 
               {/* Content */}
-              <div className="prose prose-gray dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-foreground prose-code:text-foreground prose-code:bg-card/50 prose-pre:bg-gray-900 prose-pre:text-gray-100">
-                
+              <div className="prose prose-gray dark:prose-invert max-w-none">
                 <p>JAngular provides comprehensive Docker integration with optimized containerization for all application components. The Docker setup includes multi-stage builds, persistent data storage, service orchestration, and production-ready configurations for seamless deployment across environments.</p>
 
                 <h2 id="containerized-architecture">Containerized Architecture</h2>
@@ -55,7 +54,11 @@ export default function DockerPage() {
                 <p>The JAngular CLI provides an interactive Docker management interface for easy container orchestration:</p>
 
                 <h3>Interactive Docker Menu</h3>
-                <pre><code>jangular docker</code></pre>
+                <div className="bg-gray-900 rounded-lg p-4 my-4 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm">
+{`jangular docker`}
+                  </pre>
+                </div>
 
                 <p>This command launches an interactive menu with the following capabilities:</p>
 
@@ -95,7 +98,9 @@ export default function DockerPage() {
                 <p>Optimized Docker builds using multi-stage architecture for minimal image sizes and enhanced security:</p>
 
                 <h3>Backend Build Configuration</h3>
-                <pre><code># Stage 1: Build Environment
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Stage 1: Build Environment
 FROM eclipse-temurin:21-jdk-jammy AS build
 WORKDIR /app
 COPY pom.xml .
@@ -105,19 +110,25 @@ RUN chmod +x mvnw
 COPY src ./src
 RUN ./mvnw clean package -DskipTests
 
-# Stage 2: Runtime Environment  
+# Stage 2: Runtime Environment
 FROM eclipse-temurin:21-jre-jammy
 RUN groupadd -r spring && useradd -r -g spring spring
 USER spring:spring
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \\
   CMD curl -f http://localhost:8080/actuator/health || exit 1
-ENTRYPOINT [&apos;java&apos;, &apos;-jar&apos;, &apos;app.jar&apos;]</code></pre>
+
+ENTRYPOINT ["java", "-jar", "app.jar"]`}
+                  </pre>
+                </div>
 
                 <h3>Frontend Build Configuration</h3>
-                <pre><code># Stage 1: Build Environment
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Stage 1: Build Environment
 FROM node:20-alpine AS build
 WORKDIR /app
 COPY package*.json ./
@@ -132,9 +143,13 @@ COPY --from=build /app/dist/frontend/browser /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx-default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \\
   CMD wget --no-verbose --tries=1 --spider http://localhost/ || exit 1
-CMD [&apos;nginx&apos;, &apos;-g&apos;, &apos;daemon off;&apos;]</code></pre>
+
+CMD ["nginx", "-g", "daemon off;"]`}
+                  </pre>
+                </div>
 
                 <h3>Build Optimizations</h3>
                 <ul>
@@ -150,7 +165,9 @@ CMD [&apos;nginx&apos;, &apos;-g&apos;, &apos;daemon off;&apos;]</code></pre>
                 <p>Comprehensive service orchestration with environment-specific configurations:</p>
 
                 <h3>Development Configuration</h3>
-                <pre><code># Start development environment
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Start development environment
 docker-compose up -d
 
 # View aggregated logs
@@ -165,10 +182,14 @@ docker-compose logs -f mysql
 docker-compose down
 
 # Stop and remove volumes (clean slate)
-docker-compose down -v --remove-orphans</code></pre>
+docker-compose down -v --remove-orphans`}
+                  </pre>
+                </div>
 
                 <h3>Production Configuration</h3>
-                <pre><code># Deploy production environment
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Deploy production environment
 docker-compose -f docker-compose.prod.yml up -d
 
 # Production health check
@@ -178,7 +199,9 @@ docker-compose -f docker-compose.prod.yml ps
 docker-compose -f docker-compose.prod.yml up -d --scale backend=3
 
 # Production shutdown
-docker-compose -f docker-compose.prod.yml down</code></pre>
+docker-compose -f docker-compose.prod.yml down`}
+                  </pre>
+                </div>
 
                 <h3>Service Dependencies</h3>
                 <ul>
@@ -194,7 +217,9 @@ docker-compose -f docker-compose.prod.yml down</code></pre>
                 <p>Flexible configuration management supporting multiple deployment scenarios:</p>
 
                 <h3>Environment Variables</h3>
-                <pre><code># Backend Environment
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Backend Environment
 SPRING_PROFILES_ACTIVE=docker
 SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/jangular
 SPRING_DATASOURCE_USERNAME=jangular_user
@@ -202,7 +227,7 @@ SPRING_DATASOURCE_PASSWORD=secure_password
 JWT_SECRET=your-production-jwt-secret
 CORS_ALLOWED_ORIGINS=http://frontend:80
 
-# Frontend Environment  
+# Frontend Environment
 ANGULAR_ENV=production
 API_BASE_URL=http://backend:8080/api
 AUTH_BASE_URL=http://backend:8080/auth
@@ -211,7 +236,9 @@ AUTH_BASE_URL=http://backend:8080/auth
 MYSQL_ROOT_PASSWORD=root_password
 MYSQL_DATABASE=jangular
 MYSQL_USER=jangular_user
-MYSQL_PASSWORD=secure_password</code></pre>
+MYSQL_PASSWORD=secure_password`}
+                  </pre>
+                </div>
 
                 <h3>Configuration Files</h3>
                 <ul>
@@ -243,16 +270,20 @@ MYSQL_PASSWORD=secure_password</code></pre>
                 </ul>
 
                 <h3>Backup Strategy</h3>
-                <pre><code># Database backup
-docker-compose exec mysql mysqldump -u root -p jangular &gt; backup.sql
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Database backup
+docker-compose exec mysql mysqldump -u root -p jangular > backup.sql
 
 # Volume backup
-docker run --rm -v jangular_mysql_data:/data -v $(pwd):/backup \
+docker run --rm -v jangular_mysql_data:/data -v $(pwd):/backup \\
   alpine tar czf /backup/mysql-backup.tar.gz /data
 
 # Restore from backup
-docker run --rm -v jangular_mysql_data:/data -v $(pwd):/backup \
-  alpine tar xzf /backup/mysql-backup.tar.gz -C /</code></pre>
+docker run --rm -v jangular_mysql_data:/data -v $(pwd):/backup \\
+  alpine tar xzf /backup/mysql-backup.tar.gz -C /`}
+                  </pre>
+                </div>
 
                 <h3>Data Management</h3>
                 <ul>
@@ -278,7 +309,9 @@ docker run --rm -v jangular_mysql_data:/data -v $(pwd):/backup \
                 </ul>
 
                 <h3>Production Commands</h3>
-                <pre><code># Production deployment
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Production deployment
 docker-compose -f docker-compose.prod.yml up -d
 
 # Scale backend services
@@ -289,7 +322,9 @@ docker-compose -f docker-compose.prod.yml up -d --force-recreate backend
 
 # Monitor production health
 docker-compose -f docker-compose.prod.yml ps
-docker-compose -f docker-compose.prod.yml top</code></pre>
+docker-compose -f docker-compose.prod.yml top`}
+                  </pre>
+                </div>
 
                 <h3>Monitoring & Observability</h3>
                 <ul>
@@ -305,14 +340,18 @@ docker-compose -f docker-compose.prod.yml top</code></pre>
                 <p>Comprehensive database support with administration tools and health monitoring:</p>
 
                 <h3>Database Health Checks</h3>
-                <pre><code># MySQL health check
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# MySQL health check
 docker-compose exec mysql mysqladmin ping -h localhost -u root -p
 
-# PostgreSQL health check  
+# PostgreSQL health check
 docker-compose exec postgres pg_isready -U postgres
 
 # SQL Server health check
-docker-compose exec mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P password -Q &quot;SELECT @@VERSION&quot;</code></pre>
+docker-compose exec mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P password -Q "SELECT @@VERSION"`}
+                  </pre>
+                </div>
 
                 <h3>Database Administration</h3>
                 <ul>
@@ -333,7 +372,6 @@ docker-compose exec mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P pass
                 <blockquote>
                   <p><strong>Production Note:</strong> The Docker configuration includes comprehensive security hardening, performance optimization, and monitoring capabilities suitable for enterprise production environments.</p>
                 </blockquote>
-
               </div>
             </main>
           </div>
