@@ -6,45 +6,50 @@ export default function DeploymentPage() {
     <div className="min-h-screen bg-background text-foreground">
       <Sidebar />
       
-      <div className="lg-pl-64">
+      <div className="lg:pl-64">
         <Header />
         
-        <div className="py-8 px-4 sm-px-6 lg-px-8 overflow-x-hidden">
+        <div className="py-8 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
           <div className="max-w-4xl mx-auto">
             <main className="animate-fade-in-up">
               {/* Page Header */}
               <div className="mb-12">
                 <h1 className="text-4xl font-bold text-foreground mb-4">Deployment Guide</h1>
-                <p className="text-xl text-foreground-muted leading-relaxed">
+                <p className="text-xl text-muted-foreground leading-relaxed">
                   Comprehensive deployment strategies for JAngular applications across development, staging, and production environments with cloud platform integration.
                 </p>
               </div>
 
               {/* Content */}
-              <div className="prose prose-gray dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-foreground prose-code:text-foreground prose-code:bg-card/50 prose-pre:bg-gray-900 prose-pre:text-gray-100">
-                
+              <div className="prose prose-gray dark:prose-invert max-w-none">
                 <p>JAngular applications can be deployed across various environments and platforms using multiple strategies. This guide covers everything from local development to enterprise cloud deployments with comprehensive configuration management and best practices.</p>
 
                 <h2 id="development-deployment">Development Deployment</h2>
                 <p>Development deployments focus on rapid iteration, debugging capabilities, and ease of testing:</p>
 
                 <h3>Local Development Setup</h3>
-                <pre><code># Install all project dependencies
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Install all project dependencies
 npm run install:all
 
 # Start backend with hot reload (Terminal 1)
 npm run start:backend
 
-# Start frontend with hot reload (Terminal 2)  
+# Start frontend with hot reload (Terminal 2)
 npm run start:frontend
 
 # Access application
 # Frontend: http://localhost:4200
 # Backend API: http://localhost:8080
-# Database: See docker-compose.yml for ports</code></pre>
+# Database: See docker-compose.yml for ports`}
+                  </pre>
+                </div>
 
                 <h3>Docker Development Environment</h3>
-                <pre><code># Start complete development stack
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Start complete development stack
 docker-compose up -d
 
 # View aggregated logs
@@ -59,7 +64,9 @@ docker-compose logs -f mysql
 docker-compose down
 
 # Clean restart (removes volumes)
-docker-compose down -v && docker-compose up -d</code></pre>
+docker-compose down -v && docker-compose up -d`}
+                  </pre>
+                </div>
 
                 <h3>Development Features</h3>
                 <ul>
@@ -76,7 +83,9 @@ docker-compose down -v && docker-compose up -d</code></pre>
                 <p>Staging environments replicate production conditions for thorough testing:</p>
 
                 <h3>Staging Build Process</h3>
-                <pre><code># Build applications for staging
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Build applications for staging
 jangular build --all
 
 # Deploy to staging with environment-specific configuration
@@ -84,7 +93,9 @@ docker-compose -f docker-compose.staging.yml up -d
 
 # Run staging health checks
 docker-compose -f docker-compose.staging.yml ps
-curl -f http://staging.yourapp.com/actuator/health</code></pre>
+curl -f http://staging.yourapp.com/actuator/health`}
+                  </pre>
+                </div>
 
                 <h3>Staging Configuration</h3>
                 <ul>
@@ -101,7 +112,9 @@ curl -f http://staging.yourapp.com/actuator/health</code></pre>
                 <p>Production deployments prioritize performance, security, and reliability:</p>
 
                 <h3>Production Build Optimization</h3>
-                <pre><code># Build optimized production artifacts
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Build optimized production artifacts
 jangular build --all --prod
 
 # Build specific components with production optimizations
@@ -110,10 +123,14 @@ jangular build --frontend --prod
 
 # Verify build artifacts
 ls -la backend/target/
-ls -la frontend/dist/</code></pre>
+ls -la frontend/dist/`}
+                  </pre>
+                </div>
 
                 <h3>Production Docker Deployment</h3>
-                <pre><code># Deploy production environment
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Deploy production environment
 docker-compose -f docker-compose.prod.yml up -d
 
 # Scale backend services for high availability
@@ -125,7 +142,9 @@ docker-compose -f docker-compose.prod.yml top
 
 # Production health monitoring
 docker-compose -f docker-compose.prod.yml exec backend curl http://localhost:8080/actuator/health
-docker-compose -f docker-compose.prod.yml logs --tail=100 -f</code></pre>
+docker-compose -f docker-compose.prod.yml logs --tail=100 -f`}
+                  </pre>
+                </div>
 
                 <h3>Production Features</h3>
                 <ul>
@@ -142,7 +161,9 @@ docker-compose -f docker-compose.prod.yml logs --tail=100 -f</code></pre>
                 <p>Comprehensive configuration management across all deployment environments:</p>
 
                 <h3>Backend Environment Configuration</h3>
-                <pre><code># application.properties (Base configuration)
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# application.properties (Base configuration)
 spring.application.name=jangular-backend
 spring.profiles.active=@spring.profiles.active@
 logging.level.com.example=INFO
@@ -157,29 +178,37 @@ cors.allowed-origins=http://localhost:4200
 spring.datasource.url=jdbc:mysql://prod-db:3306/jangular_prod
 spring.jpa.hibernate.ddl-auto=validate
 logging.level.com.example=WARN
-cors.allowed-origins=https://yourapp.com</code></pre>
+cors.allowed-origins=https://yourapp.com`}
+                  </pre>
+                </div>
 
                 <h3>Frontend Environment Configuration</h3>
-                <pre><code># environment.ts (Development)
-export const environment = &#123;
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# environment.ts (Development)
+export const environment = {
   production: false,
-  apiUrl: &apos;http://localhost:8080/api&apos;,
-  authUrl: &apos;http://localhost:8080/auth&apos;,
+  apiUrl: 'http://localhost:8080/api',
+  authUrl: 'http://localhost:8080/auth',
   enableDebugTools: true,
-  logLevel: &apos;debug&apos;
-&#125;;
+  logLevel: 'debug'
+};
 
 # environment.prod.ts (Production)
-export const environment = &#123;
+export const environment = {
   production: true,
-  apiUrl: &apos;https://api.yourapp.com/api&apos;,
-  authUrl: &apos;https://api.yourapp.com/auth&apos;,
+  apiUrl: 'https://api.yourapp.com/api',
+  authUrl: 'https://api.yourapp.com/auth',
   enableDebugTools: false,
-  logLevel: &apos;error&apos;
-&#125;;</code></pre>
+  logLevel: 'error'
+};`}
+                  </pre>
+                </div>
 
                 <h3>Docker Environment Variables</h3>
-                <pre><code># .env.prod (Production Environment Variables)
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# .env.prod (Production Environment Variables)
 SPRING_PROFILES_ACTIVE=prod
 MYSQL_ROOT_PASSWORD=secure_root_password
 MYSQL_DATABASE=jangular_prod
@@ -188,7 +217,9 @@ MYSQL_PASSWORD=secure_database_password
 JWT_SECRET=your-256-bit-production-secret
 CORS_ALLOWED_ORIGINS=https://yourapp.com
 SSL_CERTIFICATE_PATH=/etc/ssl/certs/yourapp.com.crt
-SSL_PRIVATE_KEY_PATH=/etc/ssl/private/yourapp.com.key</code></pre>
+SSL_PRIVATE_KEY_PATH=/etc/ssl/private/yourapp.com.key`}
+                  </pre>
+                </div>
 
                 <hr />
 
@@ -196,7 +227,9 @@ SSL_PRIVATE_KEY_PATH=/etc/ssl/private/yourapp.com.key</code></pre>
                 <p>Professional container image management for deployment pipelines:</p>
 
                 <h3>Image Building & Tagging</h3>
-                <pre><code># Build production images
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Build production images
 docker-compose -f docker-compose.prod.yml build
 
 # Tag images with version and registry information
@@ -205,10 +238,14 @@ docker tag jangular-frontend:latest registry.yourcompany.com/jangular/frontend:v
 
 # Tag with latest for rolling deployments
 docker tag jangular-backend:latest registry.yourcompany.com/jangular/backend:latest
-docker tag jangular-frontend:latest registry.yourcompany.com/jangular/frontend:latest</code></pre>
+docker tag jangular-frontend:latest registry.yourcompany.com/jangular/frontend:latest`}
+                  </pre>
+                </div>
 
                 <h3>Registry Operations</h3>
-                <pre><code># Login to container registry
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Login to container registry
 docker login registry.yourcompany.com
 
 # Push versioned images
@@ -221,7 +258,9 @@ docker push registry.yourcompany.com/jangular/frontend:latest
 
 # Pull images for deployment
 docker pull registry.yourcompany.com/jangular/backend:v1.2.0
-docker pull registry.yourcompany.com/jangular/frontend:v1.2.0</code></pre>
+docker pull registry.yourcompany.com/jangular/frontend:v1.2.0`}
+                  </pre>
+                </div>
 
                 <h3>Image Security & Optimization</h3>
                 <ul>
@@ -247,7 +286,9 @@ docker pull registry.yourcompany.com/jangular/frontend:v1.2.0</code></pre>
                   <li><strong>Cleanup</strong> - Prepare Blue environment for next deployment</li>
                 </ol>
 
-                <pre><code># Blue-Green deployment with Docker
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Blue-Green deployment with Docker
 # Deploy to Green environment
 docker-compose -f docker-compose.green.yml up -d
 
@@ -258,7 +299,9 @@ curl -f https://green.yourapp.com/actuator/health
 # Update DNS or load balancer to point to Green
 
 # Monitor and validate
-docker-compose -f docker-compose.green.yml logs -f</code></pre>
+docker-compose -f docker-compose.green.yml logs -f`}
+                  </pre>
+                </div>
 
                 <h3>Canary Deployment</h3>
                 <ol>
@@ -284,8 +327,11 @@ docker-compose -f docker-compose.green.yml logs -f</code></pre>
                 <p>Platform-specific deployment guides for major cloud providers:</p>
 
                 <h3>Amazon Web Services (AWS)</h3>
+
                 <h4>ECS (Elastic Container Service) Deployment</h4>
-                <pre><code># AWS CLI deployment to ECS
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# AWS CLI deployment to ECS
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 123456789012.dkr.ecr.us-west-2.amazonaws.com
 
 # Tag and push to ECR
@@ -293,10 +339,14 @@ docker tag jangular-backend:latest 123456789012.dkr.ecr.us-west-2.amazonaws.com/
 docker push 123456789012.dkr.ecr.us-west-2.amazonaws.com/jangular-backend:latest
 
 # Update ECS service
-aws ecs update-service --cluster jangular-cluster --service jangular-backend-service --force-new-deployment</code></pre>
+aws ecs update-service --cluster jangular-cluster --service jangular-backend-service --force-new-deployment`}
+                  </pre>
+                </div>
 
                 <h4>EKS (Elastic Kubernetes Service) Deployment</h4>
-                <pre><code># Kubernetes deployment manifest
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Kubernetes deployment manifest
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -315,43 +365,64 @@ spec:
       - name: backend
         image: 123456789012.dkr.ecr.us-west-2.amazonaws.com/jangular-backend:latest
         ports:
-        - containerPort: 8080</code></pre>
+        - containerPort: 8080`}
+                  </pre>
+                </div>
 
                 <h3>Google Cloud Platform (GCP)</h3>
+
                 <h4>Cloud Run Deployment</h4>
-                <pre><code># Deploy to Cloud Run
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Deploy to Cloud Run
 gcloud builds submit --tag gcr.io/PROJECT_ID/jangular-backend
-gcloud run deploy jangular-backend \
-  --image gcr.io/PROJECT_ID/jangular-backend \
-  --platform managed \
-  --region us-central1 \
-  --allow-unauthenticated</code></pre>
+
+gcloud run deploy jangular-backend \\
+  --image gcr.io/PROJECT_ID/jangular-backend \\
+  --platform managed \\
+  --region us-central1 \\
+  --allow-unauthenticated`}
+                  </pre>
+                </div>
 
                 <h4>GKE (Google Kubernetes Engine) Deployment</h4>
-                <pre><code># Configure kubectl for GKE
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Configure kubectl for GKE
 gcloud container clusters get-credentials jangular-cluster --zone us-central1-a --project PROJECT_ID
 
 # Deploy to GKE
 kubectl apply -f k8s-deployment.yaml
-kubectl expose deployment jangular-backend --type=LoadBalancer --port=80 --target-port=8080</code></pre>
+kubectl expose deployment jangular-backend --type=LoadBalancer --port=80 --target-port=8080`}
+                  </pre>
+                </div>
 
                 <h3>Microsoft Azure</h3>
+
                 <h4>Azure Container Instances (ACI)</h4>
-                <pre><code># Deploy to Azure Container Instances
-az container create \
-  --resource-group jangular-rg \
-  --name jangular-backend \
-  --image jangularregistry.azurecr.io/jangular-backend:latest \
-  --ports 8080 \
-  --environment-variables SPRING_PROFILES_ACTIVE=prod</code></pre>
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Deploy to Azure Container Instances
+az container create \\
+  --resource-group jangular-rg \\
+  --name jangular-backend \\
+  --image jangularregistry.azurecr.io/jangular-backend:latest \\
+  --ports 8080 \\
+  --environment-variables SPRING_PROFILES_ACTIVE=prod`}
+                  </pre>
+                </div>
 
                 <h4>Azure Kubernetes Service (AKS)</h4>
-                <pre><code># Get AKS credentials
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Get AKS credentials
 az aks get-credentials --resource-group jangular-rg --name jangular-cluster
 
 # Deploy to AKS
 kubectl apply -f azure-deployment.yaml
-kubectl get services</code></pre>
+kubectl get services`}
+                  </pre>
+                </div>
 
                 <hr />
 
@@ -359,33 +430,40 @@ kubectl get services</code></pre>
                 <p>Automated deployment pipelines for consistent and reliable releases:</p>
 
                 <h3>GitHub Actions Pipeline</h3>
-                <pre><code># .github/workflows/deploy.yml
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# .github/workflows/deploy.yml
 name: Deploy to Production
+
 on:
   push:
     branches: [main]
-    
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Build and test
-      run: |
-        jangular build --all --prod
-        jangular test --all
-        
-    - name: Build Docker images
-      run: docker-compose -f docker-compose.prod.yml build
+      - uses: actions/checkout@v3
       
-    - name: Deploy to production
-      run: |
-        docker-compose -f docker-compose.prod.yml up -d
-        docker-compose -f docker-compose.prod.yml exec backend curl -f http://localhost:8080/actuator/health</code></pre>
+      - name: Build and test
+        run: |
+          jangular build --all --prod
+          jangular test --all
+      
+      - name: Build Docker images
+        run: docker-compose -f docker-compose.prod.yml build
+      
+      - name: Deploy to production
+        run: |
+          docker-compose -f docker-compose.prod.yml up -d
+          docker-compose -f docker-compose.prod.yml exec backend curl -f http://localhost:8080/actuator/health`}
+                  </pre>
+                </div>
 
                 <h3>GitLab CI/CD Pipeline</h3>
-                <pre><code># .gitlab-ci.yml
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# .gitlab-ci.yml
 stages:
   - build
   - test
@@ -407,7 +485,9 @@ deploy:
   script:
     - docker-compose -f docker-compose.prod.yml up -d
   only:
-    - main</code></pre>
+    - main`}
+                  </pre>
+                </div>
 
                 <h3>Pipeline Best Practices</h3>
                 <ul>
@@ -440,25 +520,29 @@ deploy:
                 </ul>
 
                 <h3>Alerting Strategy</h3>
-                <pre><code># Example Prometheus alerting rules
+                <div className="bg-gray-900 rounded-lg p-6 my-6 overflow-x-auto not-prose">
+                  <pre className="text-gray-100 text-sm leading-relaxed">
+{`# Example Prometheus alerting rules
 groups:
 - name: jangular-alerts
   rules:
   - alert: HighErrorRate
-    expr: rate(http_requests_total&#123;status=~&quot;5..&quot;&#125;[5m]) &gt; 0.1
+    expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.1
     for: 5m
     labels:
       severity: critical
     annotations:
       summary: High error rate detected
-      
+  
   - alert: DatabaseConnectionFailure
     expr: mysql_up == 0
     for: 1m
     labels:
       severity: critical
     annotations:
-      summary: Database connection failed</code></pre>
+      summary: Database connection failed`}
+                  </pre>
+                </div>
 
                 <hr />
 
@@ -492,7 +576,6 @@ groups:
                 <blockquote>
                   <p><strong>Production Readiness:</strong> This deployment guide covers enterprise-grade deployment practices suitable for high-availability production environments with comprehensive security, monitoring, and compliance considerations.</p>
                 </blockquote>
-
               </div>
             </main>
           </div>
