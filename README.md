@@ -631,11 +631,6 @@ If you find JAngular CLI helpful, please consider:
 - 💬 Spreading the word to other developers
 
 ---
-
 <p align="center">
-  <strong>Built with ❤️ by developers, for developers</strong>
-</p>
-
-<p align="center">
-  <sub>JAngular CLI - Accelerating Enterprise Application Development</sub>
+  <sub>JAngular CLI - Enterprise Application Development Simplified</sub>
 </p>
