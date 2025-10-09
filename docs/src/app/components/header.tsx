@@ -2,34 +2,20 @@
 
 import Link from 'next/link';
 
-export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
+export default function Header() {
   return (
-    <header className="lg-hidden bg-card/95 border-b border-border sticky top-0 z-20 backdrop-blur-sm">
-      <div className="px-4 sm-px-6 lg-px-8">
+    <header className="lg:hidden bg-card/95 border-b border-border sticky top-0 z-20 backdrop-blur-sm">
+      <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center gap-4">
-            <button
-              type="button"
-              className="text-foreground-muted hover:text-primary p-2 rounded-lg transition-colors"
-              onClick={onMenuClick}
+            <Link
+              href="/"
+              className="flex items-center gap-3"
             >
-              <span className="sr-only">Open menu</span>
-              <svg
-                className="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-            <Link 
-              href="/" 
-              className="text-xl font-bold gradient-text"
-            >
-              JAngular
+              <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">J</span>
+              </div>
+              <span className="text-lg font-bold text-foreground">JAngular</span>
             </Link>
           </div>
           <div className="flex items-center">

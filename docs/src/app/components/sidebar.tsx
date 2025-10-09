@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 const navigation = [
-  { 
-    name: 'Overview', 
+  {
+    name: 'Overview',
     href: '/',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -14,8 +14,8 @@ const navigation = [
       </svg>
     )
   },
-  { 
-    name: 'Getting Started', 
+  {
+    name: 'Getting Started',
     href: '/getting-started',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -23,8 +23,8 @@ const navigation = [
       </svg>
     )
   },
-  { 
-    name: 'Commands', 
+  {
+    name: 'Commands',
     href: '/commands',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -32,8 +32,8 @@ const navigation = [
       </svg>
     )
   },
-  { 
-    name: 'Backend', 
+  {
+    name: 'Backend',
     href: '/backend',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -41,8 +41,8 @@ const navigation = [
       </svg>
     )
   },
-  { 
-    name: 'Frontend', 
+  {
+    name: 'Frontend',
     href: '/frontend',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,8 +50,8 @@ const navigation = [
       </svg>
     )
   },
-  { 
-    name: 'Docker', 
+  {
+    name: 'Docker',
     href: '/docker',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,8 +59,8 @@ const navigation = [
       </svg>
     )
   },
-  { 
-    name: 'Deployment', 
+  {
+    name: 'Deployment',
     href: '/deployment',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,8 +68,8 @@ const navigation = [
       </svg>
     )
   },
-  { 
-    name: 'FAQ', 
+  {
+    name: 'FAQ',
     href: '/faq',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -98,110 +98,92 @@ export default function Sidebar() {
     <>
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
-        <div 
-          className="fixed inset-0 z-40 bg-gray-900 bg-opacity-75 lg-hidden"
+        <div
+          className="fixed inset-0 z-40 bg-black/50 lg:hidden backdrop-blur-sm"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
-      {/* Mobile sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-40 w-64 bg-card shadow-xl transform transition-transform duration-300 lg-hidden ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      {/* Sidebar */}
+      <div className={`
+        w-64 bg-card border-r border-border flex-shrink-0
+        fixed top-0 left-0 h-full z-50 
+        transform transition-transform duration-300 ease-in-out
+        lg:relative lg:transform-none lg:z-auto
+        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
         <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between px-6 py-6 border-b border-border">
-            <div className="text-2xl font-bold gradient-text">
-              JAngular
-            </div>
-            <button
-              onClick={() => setSidebarOpen(false)}
-              className="text-foreground-muted hover-bg-accent-10 p-2 rounded-lg transition-colors"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+          {/* Logo */}
+          <div className="flex items-center h-16 px-6 border-b border-border">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">J</span>
+              </div>
+              <span className="text-lg font-bold text-foreground">JAngular</span>
+            </Link>
           </div>
-          <nav className="flex-1 px-3 py-6 space-y-1 overflow-y-auto">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`${
-                  pathname === item.href
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-foreground-muted hover-bg-accent-10'
-                } flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200`}
-                onClick={() => setSidebarOpen(false)}
-              >
-                <span className="flex-shrink-0">{item.icon}</span>
-                <span>{item.name}</span>
-              </Link>
-            ))}
+
+          {/* Navigation */}
+          <nav className="flex-1 px-4 py-6 space-y-2">
+            {navigation.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`
+                    flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200
+                    ${isActive
+                      ? 'bg-primary text-white shadow-sm'
+                      : 'text-foreground-muted hover:text-foreground hover:bg-background-muted'
+                    }
+                  `}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  {item.icon}
+                  {item.name}
+                </Link>
+              );
+            })}
           </nav>
-          <div className="px-6 py-4 border-t border-border">
-            <div className="flex items-center justify-between">
-              <p className="text-xs text-foreground-muted font-medium">
-                Version 1.0.0
-              </p>
+
+          {/* Footer */}
+          <div className="px-4 py-4 border-t border-border">
+            <div className="text-xs text-foreground-subtle text-center">
+              <div className="mb-2">Version 2.0.0</div>
               <a
                 href="https://github.com/nathangtg/jangular-cli"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground-muted hover:text-primary transition-colors"
-                aria-label="GitHub Repository"
+                className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
                 </svg>
+                GitHub
               </a>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Desktop sidebar */}
-      <div className="hidden lg-flex lg-w-64 lg-flex-col lg-fixed lg-inset-y-0 z-30">
-        <div className="flex-1 flex flex-col min-h-0 bg-card border-r border-border">
-          <div className="flex items-center px-6 py-8 border-b border-border">
-            <Link href="/" className="text-2xl font-bold gradient-text hover:opacity-80 transition-opacity">
-              JAngular
-            </Link>
-          </div>
-          <nav className="flex-1 px-3 py-6 space-y-1 overflow-y-auto">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`${
-                  pathname === item.href
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-foreground-muted hover-bg-accent-10'
-                } group flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200`}
-              >
-                <span className="flex-shrink-0">{item.icon}</span>
-                <span>{item.name}</span>
-              </Link>
-            ))}
-          </nav>
-          <div className="px-6 py-4 border-t border-border">
-            <div className="flex items-center justify-between">
-              <p className="text-xs text-foreground-muted font-medium">
-                Version 1.0.0
-              </p>
-              <a
-                href="https://github.com/nathangtg/jangular-cli"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground-muted hover:text-primary transition-colors"
-                aria-label="GitHub Repository"
-              >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Mobile menu button */}
+      <button
+        type="button"
+        className="fixed top-4 left-4 z-50 lg:hidden p-2 bg-card border border-border rounded-lg shadow-lg"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+      >
+        <span className="sr-only">Open sidebar</span>
+        <svg
+          className={`h-5 w-5 text-foreground transition-transform duration-200 ${sidebarOpen ? 'rotate-90' : ''}`}
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
     </>
   );
 }

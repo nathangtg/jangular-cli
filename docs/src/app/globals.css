@@ -3,25 +3,44 @@
 @tailwind utilities;
 
 :root {
-  --background: #0c0f17;
-  --background-muted: #151922;
-  --foreground: #ffffff;
-  --foreground-muted: #94a3b8;
-  --foreground-subtle: #64748b;
+  --background: #fafafa;
+  --background-muted: #f4f4f5;
+  --foreground: #18181b;
+  --foreground-muted: #52525b;
+  --foreground-subtle: #71717a;
   --primary: #f97316; /* Java Orange */
   --primary-foreground: #ffffff;
   --secondary: #ef4444; /* Angular Red */
   --secondary-foreground: #ffffff;
-  --accent: #eab308; /* Yellow for highlights */
-  --accent-foreground: #0c0f17;
-  --card: #1e293b;
-  --card-hover: #334155;
-  --card-foreground: #ffffff;
-  --border: #334155;
-  --border-light: #475569;
-  --input: #374151;
+  --accent: #0ea5e9; /* Blue for highlights */
+  --accent-foreground: #ffffff;
+  --card: #ffffff;
+  --card-hover: #f4f4f5;
+  --card-foreground: #18181b;
+  --border: #e4e4e7;
+  --border-light: #d4d4d8;
+  --input: #ffffff;
   --ring: #f97316;
-  --radius: 0.75rem;
+  --radius: 0.5rem;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #09090b;
+    --background-muted: #18181b;
+    --foreground: #fafafa;
+    --foreground-muted: #a1a1aa;
+    --foreground-subtle: #71717a;
+    --card: #18181b;
+    --card-hover: #27272a;
+    --card-foreground: #fafafa;
+    --border: #27272a;
+    --border-light: #3f3f46;
+    --input: #27272a;
+  }
 }
 
 /* Base Styles */
@@ -33,17 +52,22 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.6;
+  line-height: 1.7;
   font-feature-settings: "rlig" 1, "calt" 1;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: -0.025em;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
   color: var(--foreground);
 }
+
+h1 { font-size: 2.5rem; font-weight: 700; }
+h2 { font-size: 2rem; font-weight: 600; }
+h3 { font-size: 1.5rem; font-weight: 600; }
 
 /* Enhanced Prose Styles */
 .prose {
@@ -53,127 +77,180 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .prose h1 {
-  font-size: 2.25rem;
-  font-weight: 800;
+  font-size: 2.5rem;
+  font-weight: 700;
   margin-bottom: 1.5rem;
   margin-top: 0;
   color: var(--foreground);
-  overflow-wrap: break-word;
 }
 
 .prose h2 {
-  font-size: 1.875rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 600;
   margin-top: 3rem;
   margin-bottom: 1.25rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
   color: var(--foreground);
-  overflow-wrap: break-word;
 }
 
 .prose h3 {
-  font-size: 1.375rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   margin-bottom: 1rem;
   color: var(--foreground);
-  overflow-wrap: break-word;
 }
 
 .prose p {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   margin-top: 0;
   color: var(--foreground-muted);
-  line-height: 1.75;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
+  line-height: 1.8;
 }
 
 .prose a {
   color: var(--primary);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  font-weight: 500;
   transition: all 0.2s ease;
 }
 
 .prose a:hover {
   color: var(--primary);
-  border-bottom-color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .prose code {
   background-color: var(--card);
   color: var(--primary);
-  padding: 0.125rem 0.375rem;
-  border-radius: 0.375rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
   font-size: 0.875rem;
   font-weight: 500;
   border: 1px solid var(--border);
-  font-family: 'Monaco', 'Courier New', Consolas, monospace;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
 }
 
-/* FIXED: Code block styles for proper line wrapping */
-/* High specificity to override Tailwind prose styles */
-.prose pre,
-div.prose pre,
-.prose-gray pre,
-.dark\:prose-invert pre {
+/* Code block styles */
+.prose pre {
   background-color: var(--background-muted) !important;
   border: 1px solid var(--border) !important;
-  border-radius: 0.5rem !important;
+  border-radius: var(--radius) !important;
   padding: 1.5rem !important;
   margin: 1.5rem 0 !important;
   overflow-x: auto !important;
-  overflow-y: visible !important;
-  max-height: none !important;
-  font-family: 'Monaco', 'Courier New', Consolas, monospace !important;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace !important;
   line-height: 1.6 !important;
   font-size: 0.875rem !important;
-  position: relative !important;
-  width: 100% !important;
-  white-space: pre !important;
 }
 
-.prose pre code,
-div.prose pre code,
-.prose-gray pre code,
-.dark\:prose-invert pre code {
+.prose pre code {
   background: transparent !important;
   padding: 0 !important;
   border: none !important;
   color: var(--foreground) !important;
-  font-size: 0.875rem !important;
-  line-height: 1.6 !important;
-  white-space: pre !important;
-  word-wrap: normal !important;
-  word-break: normal !important;
-  display: block !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
   font-family: inherit !important;
-  overflow-wrap: normal !important;
 }
 
-/* Ensure code blocks don't overflow on mobile */
+/* Lists */
+.prose ul, .prose ol {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin: 0.5rem 0;
+  color: var(--foreground-muted);
+}
+
+.prose ul li::marker {
+  color: var(--primary);
+}
+
+.prose ol li::marker {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Utility Classes */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card styles */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  background: var(--card-hover);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--primary) 90%, black);
+}
+
+.btn-secondary {
+  background: var(--card);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--card-hover);
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
+}
+
+/* Mobile responsive improvements */
 @media (max-width: 768px) {
-  .prose pre,
-  div.prose pre,
-  .prose-gray pre,
-  .dark\:prose-invert pre {
-    font-size: 0.75rem !important;
-    padding: 1rem !important;
-    max-height: none !important;
-    overflow-y: visible !important;
-  }
-  
-  .prose pre code,
-  div.prose pre code,
-  .prose-gray pre code,
-  .dark\:prose-invert pre code {
-    font-size: 0.75rem !important;
-  }
-  
   .prose h1 {
-    font-size: 1.875rem;
+    font-size: 2rem;
   }
   
   .prose h2 {
@@ -184,21 +261,36 @@ div.prose pre code,
     font-size: 1.25rem;
   }
   
-  .max-w-4xl,
-  .max-w-5xl {
-    max-width: 100%;
+  .prose pre {
+    font-size: 0.75rem !important;
+    padding: 1rem !important;
   }
 }
 
-.prose ul, .prose ol {
-  margin: 1.25rem 0;
-  padding-left: 1.75rem;
+/* Alert styles */
+.alert {
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid;
+  margin: 1rem 0;
 }
 
-.prose li {
-  margin: 0.75rem 0;
-  color: var(--foreground-muted);
-  line-height: 1.75;
+.alert-info {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.alert-success {
+  background: color-mix(in srgb, var(--success) 10%, transparent);
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.alert-warning {
+  background: color-mix(in srgb, var(--warning) 10%, transparent);
+  border-color: var(--warning);
+  color: var(--warning);
 }
 
 .prose li::marker {
